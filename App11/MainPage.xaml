@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="App11.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App11"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Foreground="White">
+
+    <Grid CanDrag="True">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
+        </Grid.Background>
+        <ListView x:Name="listView1" HorizontalAlignment="Left" Margin="98,81,0,193" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" Header="MANDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" CanDragItems="True">
+            <ListView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </ListView.Background>
+        </ListView>
+        <ListView x:Name="listView1_Copy" Margin="314,81,507,193" Header="TIRSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" CanDragItems="True">
+            <ListView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </ListView.Background>
+        </ListView>
+        <ListView x:Name="listView1_Copy1" Margin="0,81,291,193" Header="ONSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" d:LayoutOverrides="TopPosition, BottomPosition" HorizontalAlignment="Right" Width="203" CanDragItems="True">
+            <ListView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </ListView.Background>
+        </ListView>
+        <ListView x:Name="listView1_Copy2" Margin="0,81,75,193" Header="TORSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" HorizontalAlignment="Right" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" CanDragItems="True">
+            <ListView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </ListView.Background>
+        </ListView>
+        <Button x:Name="button_Copy1" Content="Tilmeld" Margin="0,0,434,35" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Right" Width="134" Click="button_Copy1_Click">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Page>
