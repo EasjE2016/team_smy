@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using App11.Commands;
 
 namespace App11.Model
 {
@@ -13,10 +14,18 @@ namespace App11.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /*
+        public Relaycommand directCommand { get;private set; }
+
         public FællesViewmodel()
         {
-
+            directCommand = new Relaycommand(directMethod, null);
         }
+
+       private void directMethod()
+        {
+        }
+        */
 
         private void GotoMainpage2_Button(object sender, RoutedEventArgs e)
         {

@@ -102,11 +102,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainPage2.xaml.cs">
+      <DependentUpon>MainPage2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\FællesViewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tilmelding.xaml.cs">
-      <DependentUpon>Tilmelding.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -137,10 +137,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tilmelding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

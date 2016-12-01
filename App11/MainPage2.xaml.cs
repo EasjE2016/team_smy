@@ -20,11 +20,16 @@ namespace App11
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Tilmelding : Page
+    public sealed partial class MainPage2 : Page
     {
-        public Tilmelding()
+        public MainPage2()
         {
             this.InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(App11.MainPage));
         }
     }
 }

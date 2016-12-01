@@ -9,7 +9,7 @@ using Windows.UI.Xaml;
 
 namespace App11.Commands
 {
-    class Relaycommand : ICommand
+   public class Relaycommand : ICommand
     {
         private Action methodToExecute = null;
         private Func<bool>

@@ -30,7 +30,7 @@ namespace App11
 
         private void button_Copy1_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(App11.Tilmelding));
+            this.Frame.Navigate(typeof(App11.MainPage2));
         }
     }
 }
