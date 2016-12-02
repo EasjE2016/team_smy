@@ -1,17 +1,25 @@
 ﻿<Page
-    x:Class="App11.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App11"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Model="using:App11.Model"
+    x:Class="App11.MainPage"
     mc:Ignorable="d" Foreground="White">
+
+    <Page.DataContext>
+        <Model:FællesViewmodel/>
+    </Page.DataContext>
 
     <Grid CanDrag="True">
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
-        <ListView x:Name="listView1" HorizontalAlignment="Left" Margin="98,81,0,193" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" Header="MANDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" CanDragItems="True">
+        <ListView x:Name="listView1" HorizontalAlignment="Left" Margin="98,81,0,193" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" Header="MANDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" CanDragItems="True" SelectionChanged="listView1_SelectionChanged" ItemsSource="{Binding ListviewDeltager[0]}" IsSynchronizedWithCurrentItem="False">
+            <ListView.DataContext>
+                <Model:FællesViewmodel/>
+            </ListView.DataContext>
             <ListView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </ListView.Background>

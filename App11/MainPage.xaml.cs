@@ -32,5 +32,10 @@ namespace App11
         {
             this.Frame.Navigate(typeof(App11.MainPage2));
         }
+
+        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
     }
 }

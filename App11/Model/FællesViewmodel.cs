@@ -7,6 +7,9 @@ using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using App11.Commands;
+using Windows.Storage;
+using Windows.UI.Popups;
+using System.Windows.Input;
 
 namespace App11.Model
 {
@@ -14,6 +17,7 @@ namespace App11.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public DeltagerList ListviewDeltager { get; set; }
         /*
         public Relaycommand directCommand { get;private set; }
 
@@ -26,6 +30,19 @@ namespace App11.Model
         {
         }
         */
+
+        public Relaycommand AddDeltagere { get; set; }
+        public FællesViewmodel()
+        {
+            AddDeltagere = new Relaycommand(addDeltagerMetode, null);
+            this.ListviewDeltager = new DeltagerList();
+            
+        }
+
+        private void addDeltagerMetode()
+        {
+            
+        }
 
         private void GotoMainpage2_Button(object sender, RoutedEventArgs e)
         {
