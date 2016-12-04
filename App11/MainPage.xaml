@@ -34,7 +34,7 @@
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </ListView.Background>
         </ListView>
-        <Button x:Name="button_Copy1" Content="Beregn pris" Margin="0,0,435,45" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Right" Width="124" Click="button_Copy1_Click">
+        <Button x:Name="button_Copy1" Content="Tilmeld" Margin="0,0,435,45" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Right" Width="124" Click="button_Copy1_Click">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </Button.Background>
