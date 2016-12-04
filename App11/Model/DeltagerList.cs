@@ -11,7 +11,7 @@ namespace App11.Model
     {
         public DeltagerList()
         { 
-        /*   // :base()
+        /*   // :base()hh
         
             DeltagerList mandagsListe = new DeltagerList();
             mandagsListe.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
