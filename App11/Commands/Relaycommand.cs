@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
-using Windows.Storage;
-using Windows.UI.Popups;
 
 
 namespace App11.Commands
