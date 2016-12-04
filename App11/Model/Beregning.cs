@@ -23,7 +23,7 @@ namespace App11.Model
 
         private void prisberegningmetode()
         {
-            throw new NotImplementedException();
+
         }
     }
 }
