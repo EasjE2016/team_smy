@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace App11.Model
 {
-    class FællesViewmodel : INotifyPropertyChanged
+     class FællesViewmodel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -43,11 +43,9 @@ namespace App11.Model
         */
 
         public Relaycommand AddDeltagere { get; set; }
-        public Relaycommand BeregnPris { get; set; }
         public FællesViewmodel()
         {
             AddDeltagere = new Relaycommand(addDeltagerMetode, null);
-            BeregnPris = new Relaycommand(beregnPrisMetode, null);
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -66,10 +64,6 @@ namespace App11.Model
             _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
         }
 
-        private void beregnPrisMetode()
-        {
-            
-        }
 
         private void addDeltagerMetode()
         {
