@@ -17,7 +17,18 @@ namespace App11.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public DeltagerList ListviewDeltager { get; set; }
+        private DeltagerList _mandagsliste;
+        private DeltagerList _tirsdagsliste;
+        private DeltagerList _onsdagsliste;
+        private DeltagerList _torsdagsliste;
+
+            
+        public DeltagerList Mandagsliste
+        { get { return _mandagsliste; }}
+        public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
+        public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
+        public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
+
         /*
         public Relaycommand directCommand { get;private set; }
 
@@ -32,23 +43,46 @@ namespace App11.Model
         */
 
         public Relaycommand AddDeltagere { get; set; }
+        public Relaycommand BeregnPris { get; set; }
         public FællesViewmodel()
         {
             AddDeltagere = new Relaycommand(addDeltagerMetode, null);
-            this.ListviewDeltager = new DeltagerList();
+            BeregnPris = new Relaycommand(beregnPrisMetode, null);
+            _mandagsliste = new DeltagerList();
+            _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _mandagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _tirsdagsliste = new DeltagerList();
+            _tirsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _tirsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _tirsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _onsdagsliste = new DeltagerList();
+            _onsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _onsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _onsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _torsdagsliste = new DeltagerList();
+            _torsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+        }
+
+        private void beregnPrisMetode()
+        {
             
         }
 
         private void addDeltagerMetode()
         {
-            
-        }
 
-        private void GotoMainpage2_Button(object sender, RoutedEventArgs e)
+        }
+        protected virtual void OnPropertyChanged(string propertyname)
         {
-
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
         }
-    }
+    } 
 } 
 
 

@@ -19,8 +19,11 @@ namespace App11.Model
         {
             return "Hus nr: " + husNr +
 
-               "Antal unge(7-15), store børn (3-6), små børn (0-3): "
+               "  Antal unge(7-15), store børn (3-6), små børn (0-3): "
+
                + antalUnge + ", " + antalStoreBørn + ", " + antalSmåBørn;
+
+
 
 
         }

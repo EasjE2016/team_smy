@@ -35,7 +35,6 @@ namespace App11
 
         private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
-        }
+                    }
     }
 }

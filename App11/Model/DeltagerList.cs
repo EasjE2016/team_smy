@@ -10,8 +10,9 @@ namespace App11.Model
     class DeltagerList : ObservableCollection<Deltagere>
     {
         public DeltagerList()
-            :base()
-        {
+        { 
+        /*   // :base()
+        
             DeltagerList mandagsListe = new DeltagerList();
             mandagsListe.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             mandagsListe.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -31,7 +32,7 @@ namespace App11.Model
             torsdagsListe.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             torsdagsListe.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
             torsdagsListe.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
-
+*/
         }
     }
 }

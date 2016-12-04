@@ -13,28 +13,23 @@
     </Page.DataContext>
 
     <Grid CanDrag="True">
+        <Grid.DataContext>
+            <Model:FællesViewmodel/>
+        </Grid.DataContext>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
-        <ListView x:Name="listView1" HorizontalAlignment="Left" Margin="98,81,0,193" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" Header="MANDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" CanDragItems="True" SelectionChanged="listView1_SelectionChanged" ItemsSource="{Binding ListviewDeltager[0]}" IsSynchronizedWithCurrentItem="False">
-            <ListView.DataContext>
-                <Model:FællesViewmodel/>
-            </ListView.DataContext>
+        <ListView x:Name="listView1_Copy" Margin="314,81,507,193" Header="TIRSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" CanDragItems="True" ItemsSource="{Binding Tirsdagsliste}" Grid.RowSpan="2">
             <ListView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </ListView.Background>
         </ListView>
-        <ListView x:Name="listView1_Copy" Margin="314,81,507,193" Header="TIRSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" CanDragItems="True">
+        <ListView x:Name="listView1_Copy1" Margin="0,81,291,193" Header="ONSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" d:LayoutOverrides="TopPosition, BottomPosition" HorizontalAlignment="Right" Width="203" CanDragItems="True" ItemsSource="{Binding Onsdagsliste}">
             <ListView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </ListView.Background>
         </ListView>
-        <ListView x:Name="listView1_Copy1" Margin="0,81,291,193" Header="ONSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" d:LayoutOverrides="TopPosition, BottomPosition" HorizontalAlignment="Right" Width="203" CanDragItems="True">
-            <ListView.Background>
-                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
-            </ListView.Background>
-        </ListView>
-        <ListView x:Name="listView1_Copy2" Margin="0,81,75,193" Header="TORSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" HorizontalAlignment="Right" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" CanDragItems="True">
+        <ListView x:Name="listView1_Copy2" Margin="0,81,75,193" Header="TORSDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" HorizontalAlignment="Right" Width="203" d:LayoutOverrides="TopPosition, BottomPosition" CanDragItems="True" ItemsSource="{Binding Torsdagsliste}">
             <ListView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </ListView.Background>
@@ -44,6 +39,11 @@
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </Button.Background>
         </Button>
+        <ListView x:Name="listView1_Copy3" Margin="0,81,719,193" Header="MANDAG" FontWeight="Bold" FontFamily="Bodoni MT Black" FontSize="32" Foreground="#FFD8D8D8" HorizontalAlignment="Right" Width="203" CanDragItems="True" ItemsSource="{Binding Mandagsliste}">
+            <ListView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </ListView.Background>
+        </ListView>
 
     </Grid>
 </Page>
