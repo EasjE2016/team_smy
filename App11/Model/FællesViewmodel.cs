@@ -13,16 +13,19 @@ using System.Windows.Input;
 
 namespace App11.Model
 {
-    class FællesViewmodel : INotifyPropertyChanged
+   public class FællesViewmodel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private DeltagerList _mandagsliste;
+      private DeltagerList _mandagsliste;
         private DeltagerList _tirsdagsliste;
         private DeltagerList _onsdagsliste;
         private DeltagerList _torsdagsliste;
+        public double IaltGange;
+        public double Familie1Ialt;
+        public double Familie2Ialt;
+        public double Familie3Ialt;
 
-            
         public DeltagerList Mandagsliste
         { get { return _mandagsliste; }}
         public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
@@ -44,6 +47,7 @@ namespace App11.Model
 
         public Relaycommand AddDeltagere { get; set; }
         public Relaycommand BeregnPris { get; set; }
+
         public FællesViewmodel()
         {
             AddDeltagere = new Relaycommand(addDeltagerMetode, null);
@@ -64,12 +68,25 @@ namespace App11.Model
             _torsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
             _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
-        }
-
-        private void beregnPrisMetode()
-        {
+            this.Familie1Ialt = 
             
+            
+           
         }
+        
+
+
+       private void beregnPrisMetode()
+        {
+            foreach (Deltagere deltagere in Mandagsliste)
+            {
+               IaltGange = IaltGange + (deltagere.gangeForSmåBørn + deltagere.gangeForStoreBørn + deltagere.gangeForUnge + deltagere.gangeForVoksne);
+            }
+
+            
+
+        }
+        
 
         private void addDeltagerMetode()
         {
@@ -81,6 +98,8 @@ namespace App11.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
+
+          
         }
     } 
 } 

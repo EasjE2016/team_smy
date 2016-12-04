@@ -6,13 +6,28 @@ using System.Threading.Tasks;
 
 namespace App11.Model
 {
-    class Deltagere
+    public class Deltagere
     {
         public int husNr { get; set; }
         public int antalUnge { get; set; }
+        public double gangeForUnge { get; set; }    
         public int  antalSmåBørn { get; set; }
+        public double gangeForSmåBørn { get; set; }
         public int antalStoreBørn { get; set; }
+        public double gangeForStoreBørn { get; set; }
         public int antalVoksne { get; set; }
+        public double gangeForVoksne { get; set; }
+
+        public Deltagere()
+        {
+            this.gangeForSmåBørn = 0;
+            this.gangeForStoreBørn = 0.25;
+            this.gangeForUnge = 0.50;
+            this.gangeForVoksne = 1;
+
+        }
+        
+             
 
 
         public override string ToString()

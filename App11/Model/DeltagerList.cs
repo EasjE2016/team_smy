@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
+
 namespace App11.Model
 {
-    class DeltagerList : ObservableCollection<Deltagere>
+  public  class DeltagerList : ObservableCollection<Deltagere>
     {
         public DeltagerList()
         { 

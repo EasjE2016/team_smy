@@ -105,10 +105,10 @@
     <Compile Include="MainPage2.xaml.cs">
       <DependentUpon>MainPage2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Beregning.cs" />
     <Compile Include="Model\Deltagere.cs" />
     <Compile Include="Model\DeltagerList.cs" />
     <Compile Include="Model\FællesViewmodel.cs" />
+    <Compile Include="Model\Husstand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
