@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App11.Commands;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,8 +13,17 @@ namespace App11.Model
    
         public event PropertyChangedEventHandler PropertyChanged;
 
-     
+        private int prisIAlt;
+        public Relaycommand PrisBeregning { get; set; }
 
+        public Beregning()
+        {
+            this.PrisBeregning = new Relaycommand(prisberegningmetode, null);
+        }
 
+        private void prisberegningmetode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
