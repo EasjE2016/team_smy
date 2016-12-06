@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
-
+using App11.Model;
 
 namespace App11.Commands
 {
@@ -58,5 +58,7 @@ namespace App11.Commands
         {
             this.methodToExecute();
         }
+
+          }
     }
-}
+

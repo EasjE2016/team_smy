@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using App11.Model;
+using App11.Commands;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,11 +27,21 @@ namespace App11
         public MainPage2()
         {
             this.InitializeComponent();
-        }
+
+            
+        } 
+
+
+
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(App11.MainPage));
+        }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

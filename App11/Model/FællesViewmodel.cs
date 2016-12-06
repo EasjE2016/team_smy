@@ -13,24 +13,24 @@ using System.Windows.Input;
 
 namespace App11.Model
 {
-   public class FællesViewmodel : INotifyPropertyChanged
+    public class FællesViewmodel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-      private DeltagerList _mandagsliste;
+        private DeltagerList _mandagsliste;
         private DeltagerList _tirsdagsliste;
         private DeltagerList _onsdagsliste;
         private DeltagerList _torsdagsliste;
-        public double IaltGange;
-        public double Familie1Ialt;
-        public double Familie2Ialt;
-        public double Familie3Ialt;
+        public double FamilierIalt;
+        public double _kuvertpris;
+
 
         public DeltagerList Mandagsliste
-        { get { return _mandagsliste; }}
+        { get { return _mandagsliste; } }
         public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
         public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
         public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
+
 
         /*
         public Relaycommand directCommand { get;private set; }
@@ -46,12 +46,21 @@ namespace App11.Model
         */
 
         public Relaycommand AddDeltagere { get; set; }
-        public Relaycommand BeregnPris { get; set; }
+
+        public Relaycommand Kuvertpris
+        {
+            get { return this.Kuvertpris; }
+            set
+            {
+                this._kuvertpris = value;
+                this.OnPropertyChanged(nameof(Kuvertpris));
+            }
+        }
 
         public FællesViewmodel()
         {
             AddDeltagere = new Relaycommand(addDeltagerMetode, null);
-            BeregnPris = new Relaycommand(beregnPrisMetode, null);
+            Kuvertpris = new Relaycommand(beregnPrisMetode, null);
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -68,24 +77,29 @@ namespace App11.Model
             _torsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
             _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
-            this.Familie1Ialt = 
-            
-            
-           
+
+
+
+
         }
-        
 
 
-       private void beregnPrisMetode()
+
+        private void beregnPrisMetode()
         {
             foreach (Deltagere deltagere in Mandagsliste)
             {
-               IaltGange = IaltGange + (deltagere.gangeForSmåBørn + deltagere.gangeForStoreBørn + deltagere.gangeForUnge + deltagere.gangeForVoksne);
+                FamilierIalt = (deltagere.gangeForSmåBørn + deltagere.gangeForStoreBørn + deltagere.gangeForUnge + deltagere.gangeForVoksne);
+                _kuvertpris = _kuvertpris * FamilierIalt;
+
             }
 
-            
-
+           
         }
+
+
+    
+       
         
 
         private void addDeltagerMetode()

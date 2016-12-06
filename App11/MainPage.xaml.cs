@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App11.Commands;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace App11
             this.InitializeComponent();
         }
 
-
+    
         private void button_Copy1_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(App11.MainPage2));

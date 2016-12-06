@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\BeregnCommand.cs" />
     <Compile Include="Commands\Relaycommand.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -108,7 +109,6 @@
     <Compile Include="Model\Deltagere.cs" />
     <Compile Include="Model\DeltagerList.cs" />
     <Compile Include="Model\FællesViewmodel.cs" />
-    <Compile Include="Model\Husstand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

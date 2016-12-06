@@ -17,7 +17,7 @@ namespace App11.Model
         public double gangeForStoreBørn { get; set; }
         public int antalVoksne { get; set; }
         public double gangeForVoksne { get; set; }
-
+        public double _kuvertpris { get; set; }
         public Deltagere()
         {
             this.gangeForSmåBørn = 0;
