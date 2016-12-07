@@ -12,6 +12,8 @@ namespace App11.Model
     {
         public DeltagerList()
         { 
+
+     
         /*   // :base()hh
         
             DeltagerList mandagsListe = new DeltagerList();

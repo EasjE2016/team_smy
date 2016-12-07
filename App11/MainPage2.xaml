@@ -33,9 +33,10 @@
 			<LineBreak/>
 			<Run/>
         </TextBlock>
-        <TextBox x:Name="kuvertpris" Height="40" Margin="0,246,228,0" TextWrapping="Wrap" Text="{Binding Kuvertpris, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="253" TextChanged="textBox_TextChanged">
+        <TextBox x:Name="kuvertpris" Height="40" Margin="0,246,228,0" TextWrapping="Wrap" Text="{Binding Kuvertpris, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="253" TextChanged="textBox_TextChanged" AcceptsReturn="True">
         </TextBox>
         <Button x:Name="button1" Content="Beregn nu" Margin="465,316,434,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+        <TextBox x:Name="kuvertpris_Copy" Height="40" Margin="0,165,369,0" TextWrapping="Wrap" Text="{Binding Kuvertpris, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="253" TextChanged="textBox_TextChanged"/>
 
     </Grid>
 </Page>

@@ -8,6 +8,7 @@ namespace App11.Model
 {
     public class Deltagere
     {
+      public  double KuverterPrHus;
         public int husNr { get; set; }
         public int antalUnge { get; set; }
         public double gangeForUnge { get; set; }    
@@ -24,10 +25,10 @@ namespace App11.Model
             this.gangeForStoreBørn = 0.25;
             this.gangeForUnge = 0.50;
             this.gangeForVoksne = 1;
-
+            this.KuverterPrHus = gangeForSmåBørn + gangeForStoreBørn + gangeForUnge + gangeForVoksne;
         }
+
         
-             
 
 
         public override string ToString()
@@ -35,6 +36,8 @@ namespace App11.Model
             return "Hus nr: " + husNr +
 
                "  Antal unge(7-15), store børn (3-6), små børn (0-3): "
+
+
 
                + antalUnge + ", " + antalStoreBørn + ", " + antalSmåBørn;
 

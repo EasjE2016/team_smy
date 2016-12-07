@@ -21,8 +21,14 @@ namespace App11.Model
         private DeltagerList _tirsdagsliste;
         private DeltagerList _onsdagsliste;
         private DeltagerList _torsdagsliste;
-        public double FamilierIalt;
-        public double _kuvertpris;
+        public double KuverterMandag;
+        public double KuverterTirsdag;
+        public double KuverterTorsdag;
+        public double KuverterOnsdag;
+        public double KuverterOmUgen;
+        public double PrisPrFamilie { get; set; }
+
+        public double _prisIalt;
 
 
         public DeltagerList Mandagsliste
@@ -47,20 +53,20 @@ namespace App11.Model
 
         public Relaycommand AddDeltagere { get; set; }
 
-        public Relaycommand Kuvertpris
+        public double IaltPris
         {
-            get { return this.Kuvertpris; }
+            get { return this.IaltPris; }
             set
             {
-                this._kuvertpris = value;
-                this.OnPropertyChanged(nameof(Kuvertpris));
+                this._prisIalt = value;
+                this.OnPropertyChanged(nameof(IaltPris));
             }
         }
 
         public FællesViewmodel()
         {
             AddDeltagere = new Relaycommand(addDeltagerMetode, null);
-            Kuvertpris = new Relaycommand(beregnPrisMetode, null);
+      
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -85,19 +91,45 @@ namespace App11.Model
 
 
 
-        private void beregnPrisMetode()
+        private void BeregnKurverter()
         {
             foreach (Deltagere deltagere in Mandagsliste)
             {
-                FamilierIalt = (deltagere.gangeForSmåBørn + deltagere.gangeForStoreBørn + deltagere.gangeForUnge + deltagere.gangeForVoksne);
-                _kuvertpris = _kuvertpris * FamilierIalt;
-
+                KuverterMandag = KuverterMandag + deltagere.KuverterPrHus;
             }
 
-           
+            foreach (Deltagere deltagere in Tirsdagsliste)
+            {
+                KuverterTirsdag = KuverterTirsdag + deltagere.KuverterPrHus;
+            }
+
+            foreach (Deltagere deltagere in Tirsdagsliste)
+            {
+             KuverterOnsdag = KuverterOnsdag + deltagere.KuverterPrHus;
+            }
+
+
+            foreach (Deltagere deltagere in Tirsdagsliste)
+            {
+                KuverterTorsdag = KuverterTorsdag + deltagere.KuverterPrHus;
+            }
+
+
+            KuverterOmUgen = KuverterMandag + KuverterTirsdag + KuverterOnsdag + KuverterTorsdag; 
+
         }
 
 
+        public string PrisPrHustand()
+        {
+            foreach (Deltagere deltagere in Mandagsliste)
+            {
+                PrisPrFamilie = (_prisIalt / KuverterMandag) * deltagere.KuverterPrHus;
+                return $"Hus Nr {deltagere.husNr} skal betale {PrisPrFamilie}";
+            }
+
+            return "Godt måltid";
+        }
     
        
         
