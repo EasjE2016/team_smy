@@ -28,6 +28,13 @@ namespace App11
         {
             this.InitializeComponent();
 
+            FællesViewmodel viewmodel = new FællesViewmodel
+            {
+                IaltPris = 1
+            };
+
+            this.DataContext = viewmodel;
+
             
         } 
 
@@ -40,6 +47,11 @@ namespace App11
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
         {
 
         }

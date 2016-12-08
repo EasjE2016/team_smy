@@ -33,10 +33,10 @@
 			<LineBreak/>
 			<Run/>
         </TextBlock>
-        <TextBox x:Name="kuvertpris" Height="40" Margin="0,246,228,0" TextWrapping="Wrap" Text="{Binding Kuvertpris, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="253" TextChanged="textBox_TextChanged" AcceptsReturn="True">
+        <TextBox x:Name="kuvertpris" Height="40" Margin="0,246,228,0" TextWrapping="Wrap" Text="{Binding IaltPris, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="253" TextChanged="textBox_TextChanged" AcceptsReturn="True">
         </TextBox>
-        <Button x:Name="button1" Content="Beregn nu" Margin="465,316,434,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
-        <TextBox x:Name="kuvertpris_Copy" Height="40" Margin="0,165,369,0" TextWrapping="Wrap" Text="{Binding Kuvertpris, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="253" TextChanged="textBox_TextChanged"/>
+        <Button x:Name="button1" Margin="465,316,434,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BeregnNu}" Click="button1_Click"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="230" Margin="365,9,0,0" VerticalAlignment="Top" Width="310" BorderThickness="1" BorderBrush="#FF464444" Background="#7FC7C7C7" ItemsSource=""/>
 
     </Grid>
 </Page>

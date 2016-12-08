@@ -10,6 +10,7 @@ using App11.Commands;
 using Windows.Storage;
 using Windows.UI.Popups;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace App11.Model
 {
@@ -27,6 +28,7 @@ namespace App11.Model
         public double KuverterOnsdag;
         public double KuverterOmUgen;
         public double PrisPrFamilie { get; set; }
+     public  ObservableCollection <string> Prislist { get; set; }
 
         public double _prisIalt;
 
@@ -51,22 +53,24 @@ namespace App11.Model
         }
         */
 
-        public Relaycommand AddDeltagere { get; set; }
+        public Relaycommand BeregnNu { get; set; }
 
         public double IaltPris
         {
-            get { return this.IaltPris; }
+            get { return this._prisIalt; }
             set
             {
                 this._prisIalt = value;
-                this.OnPropertyChanged(nameof(IaltPris));
+                
             }
         }
 
         public FællesViewmodel()
         {
-            AddDeltagere = new Relaycommand(addDeltagerMetode, null);
-      
+            Prislist = new ObservableCollection<string>();
+          
+            BeregnNu = new Relaycommand(BeregnNuMetode, null);
+         
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -89,7 +93,7 @@ namespace App11.Model
 
         }
 
-
+      
 
         private void BeregnKurverter()
         {
@@ -103,13 +107,13 @@ namespace App11.Model
                 KuverterTirsdag = KuverterTirsdag + deltagere.KuverterPrHus;
             }
 
-            foreach (Deltagere deltagere in Tirsdagsliste)
+            foreach (Deltagere deltagere in Onsdagsliste)
             {
              KuverterOnsdag = KuverterOnsdag + deltagere.KuverterPrHus;
             }
 
 
-            foreach (Deltagere deltagere in Tirsdagsliste)
+            foreach (Deltagere deltagere in Torsdagsliste)
             {
                 KuverterTorsdag = KuverterTorsdag + deltagere.KuverterPrHus;
             }
@@ -124,20 +128,37 @@ namespace App11.Model
         {
             foreach (Deltagere deltagere in Mandagsliste)
             {
-                PrisPrFamilie = (_prisIalt / KuverterMandag) * deltagere.KuverterPrHus;
+                PrisPrFamilie = (_prisIalt / KuverterOmUgen ) * deltagere.KuverterPrHus;
                 return $"Hus Nr {deltagere.husNr} skal betale {PrisPrFamilie}";
             }
 
             return "Godt måltid";
         }
-    
-       
-        
 
-        private void addDeltagerMetode()
+        public void VisResultat()
         {
+            
 
+            foreach (Deltagere deltagere in Mandagsliste)
+            {
+                Prislist.Add($"Hus Nr {deltagere.husNr} skal betale {PrisPrFamilie}");
+            }
+
+           
         }
+
+
+
+        private void BeregnNuMetode()
+        {
+            foreach (Deltagere deltagere in Mandagsliste)
+            {
+                PrisPrFamilie = (_prisIalt / KuverterOmUgen) * deltagere.KuverterPrHus;
+            }
+            VisResultat();
+            
+
+            }
         protected virtual void OnPropertyChanged(string propertyname)
         {
             if (PropertyChanged != null)
