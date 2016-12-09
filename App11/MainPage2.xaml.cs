@@ -53,6 +53,10 @@ namespace App11
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+                    }
+
+        private void button1_Click_1(object sender, RoutedEventArgs e)
+        {
 
         }
     }

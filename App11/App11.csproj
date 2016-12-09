@@ -110,6 +110,7 @@
     <Compile Include="Model\DeltagerList.cs" />
     <Compile Include="Model\FællesViewmodel.cs" />
     <Compile Include="Model\ItemsChangeObservableCollection.cs" />
+    <Compile Include="Model\UgeListe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

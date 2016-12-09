@@ -22,6 +22,7 @@ namespace App11.Model
         private DeltagerList _tirsdagsliste;
         private DeltagerList _onsdagsliste;
         private DeltagerList _torsdagsliste;
+        private UgeListe _nyUgeListe;
         public double KuverterMandag;
         public double KuverterTirsdag;
         public double KuverterTorsdag;
@@ -38,7 +39,7 @@ namespace App11.Model
         public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
         public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
         public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
-
+        public UgeListe NyUgeListe { get { return _nyUgeListe; } } 
 
         /*
         public Relaycommand directCommand { get;private set; }
@@ -61,6 +62,7 @@ namespace App11.Model
             set
             {
                 this._prisIalt = value;
+                OnPropertyChanged(nameof(IaltPris));
                 
             }
         }
@@ -68,9 +70,10 @@ namespace App11.Model
         public FællesViewmodel()
         {
             Prislist = new ObservableCollection<string>();
-          
+
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-         
+            _nyUgeListe = new UgeListe();
+            _nyUgeListe.Add(new ObservableCollection<DeltagerList>() { _mandagsliste, _tirsdagsliste, _onsdagsliste, _torsdagsliste });
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -97,6 +100,8 @@ namespace App11.Model
 
         private void BeregnKurverter()
         {
+
+
             foreach (Deltagere deltagere in Mandagsliste)
             {
                 KuverterMandag = KuverterMandag + deltagere.KuverterPrHus;
@@ -124,16 +129,18 @@ namespace App11.Model
         }
 
 
-        public string PrisPrHustand()
+        public void PrisPrHustand()
         {
+
+            BeregnKurverter();
+
             foreach (Deltagere deltagere in Mandagsliste)
             {
-                PrisPrFamilie = (_prisIalt / KuverterOmUgen ) * deltagere.KuverterPrHus;
-                return $"Hus Nr {deltagere.husNr} skal betale {PrisPrFamilie}";
-            }
+                PrisPrFamilie = (_prisIalt / KuverterOmUgen) * deltagere.KuverterPrHus;
 
-            return "Godt måltid";
-        }
+            }
+        } 
+            
 
         public void VisResultat()
         {
@@ -151,9 +158,15 @@ namespace App11.Model
 
         private void BeregnNuMetode()
         {
-            foreach (Deltagere deltagere in Mandagsliste)
+            PrisPrHustand();
+            foreach (ObservableCollection<DeltagerList> Dag in NyUgeListe)
             {
-                PrisPrFamilie = (_prisIalt / KuverterOmUgen) * deltagere.KuverterPrHus;
+                foreach (Deltagere deltagere in Mandagsliste)
+                {
+                    PrisPrFamilie = (_prisIalt / KuverterOmUgen) * deltagere.KuverterPrHus;
+                }
+                
+
             }
             VisResultat();
             
