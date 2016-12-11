@@ -106,11 +106,15 @@
     <Compile Include="MainPage2.xaml.cs">
       <DependentUpon>MainPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainPage3.xaml.cs">
+      <DependentUpon>MainPage3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ArbejdsOpgaveListe.cs" />
+    <Compile Include="Model\ArbejdsOpgaver.cs" />
     <Compile Include="Model\Deltagere.cs" />
     <Compile Include="Model\DeltagerList.cs" />
     <Compile Include="Model\FællesViewmodel.cs" />
     <Compile Include="Model\ItemsChangeObservableCollection.cs" />
-    <Compile Include="Model\UgeListe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +146,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

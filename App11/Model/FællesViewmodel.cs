@@ -22,24 +22,33 @@ namespace App11.Model
         private DeltagerList _tirsdagsliste;
         private DeltagerList _onsdagsliste;
         private DeltagerList _torsdagsliste;
-        private UgeListe _nyUgeListe;
+        private ArbejdsOpgaveListe _arbejdsListe;
         public double KuverterMandag;
         public double KuverterTirsdag;
         public double KuverterTorsdag;
         public double KuverterOnsdag;
         public double KuverterOmUgen;
         public double PrisPrFamilie { get; set; }
-     public  ObservableCollection <string> Prislist { get; set; }
+        public ObservableCollection<string> Prislist { get; set; }
 
         public double _prisIalt;
+        public string _dagensRetMandag;
+        public string _dagensRetTirsdag;
+        public string _dagensRetOnsdag;
+        public string _dagensRetTorsdag;
 
+        public string _arbejdsOpgave;
+        public string _navn;
+        public string _dag;
 
         public DeltagerList Mandagsliste
         { get { return _mandagsliste; } }
         public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
         public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
         public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
-        public UgeListe NyUgeListe { get { return _nyUgeListe; } } 
+
+        public ArbejdsOpgaveListe ArbejdsListe { get { return _arbejdsListe; } }
+
 
         /*
         public Relaycommand directCommand { get;private set; }
@@ -56,6 +65,72 @@ namespace App11.Model
 
         public Relaycommand BeregnNu { get; set; }
 
+        public Relaycommand TilføjNyArbejdsOpgave { get; set; }
+
+        public string DagensRetMandag
+        {
+            get
+            {
+                return this._dagensRetMandag;
+            }
+            set
+            {
+                this._dagensRetMandag = value;
+                OnPropertyChanged(nameof(DagensRetMandag));
+            }
+        }
+
+        public string ArbejdsOpgave { get { return this._arbejdsOpgave; }
+            set { this._arbejdsOpgave = value;
+                OnPropertyChanged(nameof(ArbejdsOpgave)); } }
+
+        public string Dag { get { return this._dag; }
+            set { this._dag = value;
+                OnPropertyChanged(nameof(Dag));
+            } }
+
+        public string Navn { get { return this._navn; }
+            set { this._navn = value;
+                OnPropertyChanged(nameof(Navn));
+            } }
+        public string DagensRetTirsdag
+        {
+            get
+            {
+                return this._dagensRetTirsdag;
+            }
+            set
+            {
+                this._dagensRetTirsdag = value;
+                OnPropertyChanged(nameof(DagensRetTirsdag));
+            }
+        }
+
+        public string DagensRetOnsdag
+        {
+            get
+            {
+                return this._dagensRetOnsdag;
+            }
+            set
+            {
+                this._dagensRetOnsdag = value;
+                OnPropertyChanged(nameof(DagensRetOnsdag));
+            }
+        }
+
+        public string DagensRetTorsdag
+        {
+            get
+            {
+                return this._dagensRetTorsdag;
+            }
+            set
+            {
+                this._dagensRetTorsdag = value;
+                OnPropertyChanged(nameof(DagensRetTorsdag));
+            }
+        }
         public double IaltPris
         {
             get { return this._prisIalt; }
@@ -63,17 +138,15 @@ namespace App11.Model
             {
                 this._prisIalt = value;
                 OnPropertyChanged(nameof(IaltPris));
-                
+
             }
         }
 
         public FællesViewmodel()
         {
+            TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
-
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-            _nyUgeListe = new UgeListe();
-            _nyUgeListe.Add(new ObservableCollection<DeltagerList>() { _mandagsliste, _tirsdagsliste, _onsdagsliste, _torsdagsliste });
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -90,13 +163,26 @@ namespace App11.Model
             _torsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
             _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
-
+            _arbejdsListe = new ArbejdsOpgaveListe();
 
 
 
         }
 
-      
+        private void TilføjMetode()
+        {
+
+            _arbejdsListe.Add(new ArbejdsOpgaver()
+            {
+                ArbejdsOpgave = ArbejdsOpgave,
+        Dag = Dag,
+            Navn = Navn
+        
+            });
+          
+
+           
+        }
 
         private void BeregnKurverter()
         {
@@ -158,12 +244,10 @@ namespace App11.Model
 
         private void BeregnNuMetode()
         {
-            PrisPrHustand();
-            foreach (ObservableCollection<DeltagerList> Dag in NyUgeListe)
             {
                 foreach (Deltagere deltagere in Mandagsliste)
                 {
-                    PrisPrFamilie = (_prisIalt / KuverterOmUgen) * deltagere.KuverterPrHus;
+                    PrisPrFamilie = (_prisIalt / KuverterMandag) * deltagere.KuverterPrHus;
                 }
                 
 

@@ -13,17 +13,40 @@
     </Page.DataContext>
 
     <Grid CanDrag="True">
+
         <Grid.DataContext>
             <Model:FællesViewmodel/>
         </Grid.DataContext>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
-        <Button x:Name="button_Copy1" Content="Tilmeld" Margin="0,0,435,45" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Right" Width="124" Click="button_Copy1_Click">
-            <Button.Background>
+        <GridView x:Name="gridView" Margin="75,53,0,151" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}" HorizontalAlignment="Left" Width="195">
+            <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
-            </Button.Background>
-        </Button>
+            </GridView.Background>
+        </GridView>
+        <GridView x:Name="gridView_Copy" Margin="0,53,301,151" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}">
+            <GridView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </GridView.Background>
+        </GridView>
+        <GridView x:Name="gridView_Copy1" Margin="309,53,0,151" Header="Onsdag" ItemsSource="{Binding Onsdagsliste}" HorizontalAlignment="Left" Width="194">
+            <GridView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </GridView.Background>
+        </GridView>
+        <GridView x:Name="gridView_Copy2" Margin="0,51,71,153" HorizontalAlignment="Right" Width="194" Header="Torsdag" ItemsSource="{Binding Torsdagsliste}">
+            <GridView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </GridView.Background>
+
+        </GridView>
+        <TextBlock x:Name="textBlock1" Height="22" Margin="75,26,0,0" TextWrapping="Wrap" Text="Dagens ret" VerticalAlignment="Top" HorizontalAlignment="Left" Width="183" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy" Height="22" Margin="0,26,521,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy1" Height="22" Margin="0,26,301,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy2" Height="22" Margin="0,26,71,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" d:LayoutOverrides="HorizontalAlignment" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <Button x:Name="button" Content="Beregn" HorizontalAlignment="Right" Height="55" Margin="0,0,354,30" VerticalAlignment="Bottom" Width="141" Click="button_Click"/>
+        <Button x:Name="button1" Content="Mad " Height="55" Margin="362,0,0,30" VerticalAlignment="Bottom" Width="141" HorizontalAlignment="Left" Click="button1_Click"/>
 
     </Grid>
 </Page>

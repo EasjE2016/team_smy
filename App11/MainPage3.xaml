@@ -1,0 +1,62 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App11"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Model="using:App11.Model"
+    x:Class="App11.MainPage3"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <Model:FællesViewmodel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
+        </Grid.Background>
+        <TextBox x:Name="textBox" HorizontalAlignment="Right" Margin="0,98,127,0" TextWrapping="Wrap" Text="{Binding DagensRetMandag, Mode=TwoWay}" VerticalAlignment="Top" Height="54" Width="242" ToolTipService.ToolTip="Mandag" Background="White"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Right" Margin="0,43,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="55" Width="339" FontSize="26.667">
+			<Run Text="Indtast"/>
+			<Run Text=" Dagens ret "/>
+        </TextBlock>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Right" Margin="0,164,127,0" TextWrapping="Wrap" Text="{Binding DagensRetTirsdag, Mode=TwoWay}" VerticalAlignment="Top" Height="55" Width="242" ToolTipService.ToolTip="Mandag"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Right" Margin="0,231,127,0" TextWrapping="Wrap" Text="{Binding DagensRetOnsdag, Mode=TwoWay}" VerticalAlignment="Top" Height="54" Width="242" ToolTipService.ToolTip="Mandag"/>
+        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Right" Margin="0,297,127,288" TextWrapping="Wrap" Text="{Binding DagensRetTorsdag, Mode=TwoWay}" Width="242" ToolTipService.ToolTip="Mandag" d:LayoutOverrides="TopPosition, BottomPosition"/>
+        <TextBlock x:Name="textBlock_Copy" Margin="0,103,145,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="55" FontSize="26.667" Text="Mandag" HorizontalAlignment="Right" Width="339"/>
+        <TextBlock x:Name="textBlock_Copy1" Margin="0,166,142,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="55" FontSize="26.667" Text="Tirsdag" HorizontalAlignment="Right" Width="339"/>
+        <TextBlock x:Name="textBlock_Copy2" Margin="0,229,142,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="55" FontSize="26.667" Text="Onsdag" HorizontalAlignment="Right" Width="339"/>
+        <TextBlock x:Name="textBlock_Copy3" Margin="0,298,145,288" TextWrapping="Wrap" FontSize="26.667" Text="Torsdag" HorizontalAlignment="Right" Width="336"/>
+        <Button x:Name="button" Content="Tilbage til&#xD;&#xA;forside" HorizontalAlignment="Stretch" Margin="418,0,431,19" VerticalAlignment="Bottom" Height="64" FontSize="21.333" Click="button_Click"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Margin="75,43,0,220" Width="240" ItemsSource="{Binding ArbejdsListe}" SelectionChanged="listView_SelectionChanged" IsSynchronizedWithCurrentItem="False">
+            <ListView.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </ListView.Background>
+        </ListView>
+        <Button x:Name="button1" Content="Tilføj &#xD;&#xA;ArbejdsOpgave" Margin="332,0,0,155" VerticalAlignment="Bottom" Height="50" Width="123" Command="{Binding TilføjNyArbejdsOpgave}">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="50" Margin="170,0,0,155" TextWrapping="Wrap" Text="{Binding Navn, Mode=TwoWay}" VerticalAlignment="Bottom" Width="145"/>
+        <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="50" Margin="170,0,0,101" TextWrapping="Wrap" Text="{Binding Dag, Mode=TwoWay}" VerticalAlignment="Bottom" Width="145"/>
+        <TextBox x:Name="textBox1_Copy1" HorizontalAlignment="Left" Height="50" Margin="170,0,0,44" TextWrapping="Wrap" Text="{Binding ArbejdsOpgave, Mode=TwoWay}" VerticalAlignment="Bottom" Width="145"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="50" Margin="76,0,0,155" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="125" FontSize="32">
+        	<Run Text="Navn"/>
+        	<Run Text=" :"/>
+        </TextBlock>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="50" Margin="91,0,0,109" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="125" FontSize="32">
+        	<Run Text="Dag"/>
+        	<Run Text=":"/>
+        </TextBlock>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Height="107" Margin="64,0,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="137" FontSize="26.667">
+        	<Run Text="Arbejds"/>
+        	<LineBreak/>
+        	<Run Text="opgave"/>
+        	<LineBreak/>
+        	<Run/>
+        </TextBlock>
+
+    </Grid>
+</Page>

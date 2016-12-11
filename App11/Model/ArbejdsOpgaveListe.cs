@@ -8,11 +8,14 @@ using System.Collections.ObjectModel;
 
 namespace App11.Model
 {
-    public class UgeListe : ObservableCollection<ObservableCollection<DeltagerList>>
-    {
-        public UgeListe()
+ public class ArbejdsOpgaveListe : ObservableCollection<ArbejdsOpgaver>
+     {
+        public ArbejdsOpgaveListe()
+
         {
-    
+            
+
         }
+        
     }
 }
