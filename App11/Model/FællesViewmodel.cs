@@ -65,6 +65,7 @@ namespace App11.Model
 
         public Relaycommand BeregnNu { get; set; }
 
+        public Relaycommand TilføjDeltager { get; set; }
         public Relaycommand TilføjNyArbejdsOpgave { get; set; }
 
         public string DagensRetMandag
@@ -146,7 +147,9 @@ namespace App11.Model
         {
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
+
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
+            TilføjDeltager = new Relaycommand (TilføjDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -167,6 +170,12 @@ namespace App11.Model
 
 
 
+        }
+
+        private void TilføjDeltagerMetode()
+        {
+           // Deltagere  = new Deltagere()
+ 
         }
 
         private void TilføjMetode()
