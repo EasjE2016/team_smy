@@ -142,6 +142,7 @@ namespace App11.Model
 
             }
         }
+        private Dictionary<int, Double> Prisdict;
 
         public FællesViewmodel()
         {
@@ -149,8 +150,7 @@ namespace App11.Model
             Prislist = new ObservableCollection<string>();
 
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-            TilføjDeltager = new Relaycommand (TilføjDeltagerMetode, null);
-            
+            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(1, new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(2, new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -247,10 +247,10 @@ namespace App11.Model
                 deltager.Value.PrisPrFamilie = (_prisIalt / KuverterMandag) *
                     ((deltager.Value.antalVoksne * deltager.Value.gangeForVoksne + 
                     deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); ;
+                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); 
+              
 
             }
-
             foreach (KeyValuePair<int, Deltagere> deltager in Tirsdagsliste)
             {
                 deltager.Value.PrisPrFamilie = (_prisIalt / KuverterTirsdag) *
@@ -277,9 +277,8 @@ namespace App11.Model
                     deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); ;
 
                 
-
+    
             }
-
             
            
             

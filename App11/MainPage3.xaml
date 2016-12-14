@@ -24,11 +24,8 @@
         <TextBox x:Name="textBox_Copy" HorizontalAlignment="Right" Margin="0,126,130,0" TextWrapping="Wrap" Text="{Binding DagensRetTirsdag, Mode=TwoWay}" VerticalAlignment="Top" Height="38" Width="240" ToolTipService.ToolTip="Mandag"/>
         <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Right" Margin="0,172,130,0" TextWrapping="Wrap" Text="{Binding DagensRetOnsdag, Mode=TwoWay}" VerticalAlignment="Top" Height="37" Width="240" ToolTipService.ToolTip="Mandag"/>
         <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Right" Margin="0,217,130,385" TextWrapping="Wrap" Text="{Binding DagensRetTorsdag, Mode=TwoWay}" Width="240" ToolTipService.ToolTip="Mandag"/>
-        <TextBlock x:Name="textBlock_Copy" Margin="0,84,148,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" FontSize="26.667" HorizontalAlignment="Right" Width="336">
-        	<Run Text="Mandag"/>
-        	<Run Text="Lasagne"/>
-        </TextBlock>
-        <TextBlock x:Name="textBlock_Copy1" Margin="0,127,145,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" FontSize="26.667" Text="Tirsdag" HorizontalAlignment="Right" Width="336"/>
+        <TextBlock x:Name="textBlock_Copy" Margin="0,84,375,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" FontSize="26.667" HorizontalAlignment="Right" Width="144" Text="Mandag"/>
+        <TextBlock x:Name="textBlock_Copy1" Margin="0,127,370,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" FontSize="26.667" Text="Tirsdag" HorizontalAlignment="Right" Width="111"/>
         <TextBlock x:Name="textBlock_Copy2" Margin="0,171,145,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" FontSize="26.667" Text="Onsdag" HorizontalAlignment="Right" Width="336"/>
         <TextBlock x:Name="textBlock_Copy3" Margin="0,218,148,385" TextWrapping="Wrap" FontSize="26.667" Text="Torsdag" HorizontalAlignment="Right" Width="333"/>
         <Button x:Name="button" Content="Tilbage til&#xD;&#xA;forside" HorizontalAlignment="Stretch" Margin="418,0,431,19" VerticalAlignment="Bottom" Height="64" FontSize="21.333" Click="button_Click"/>
