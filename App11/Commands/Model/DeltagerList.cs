@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace App11.Model
 {
-  public  class DeltagerList : Dictionary<int, Deltagere>
+  public  class DeltagerList : ObservableCollection<Deltagere>
     {
         public DeltagerList()
         { 

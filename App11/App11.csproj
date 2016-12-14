@@ -113,7 +113,7 @@
     <Compile Include="Commands\Model\Deltagere.cs" />
     <Compile Include="Commands\Model\DeltagerList.cs" />
     <Compile Include="Commands\Model\FællesViewmodel.cs" />
-    <Compile Include="Commands\Model\ItemsChangeObservableCollection.cs" />
+    <Compile Include="Commands\ItemsChangeObservableCollection.cs" />
     <Compile Include="Commands\Model\TilføjOgAfmeld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

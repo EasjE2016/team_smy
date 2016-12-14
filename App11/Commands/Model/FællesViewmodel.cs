@@ -19,11 +19,11 @@ namespace App11.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
         //Instance fields
-        private DeltagerList _mandagsliste;
-        private DeltagerList _tirsdagsliste;
-        private DeltagerList _onsdagsliste;
-        private DeltagerList _torsdagsliste;
-        private ArbejdsOpgaveListe _arbejdsListe;
+        public DeltagerList _mandagsliste;
+        public DeltagerList _tirsdagsliste;
+        public DeltagerList _onsdagsliste;
+        public DeltagerList _torsdagsliste;
+        public ArbejdsOpgaveListe _arbejdsListe;
         public double KuverterMandag;
         public double KuverterTirsdag;
         public double KuverterTorsdag;
@@ -37,11 +37,16 @@ namespace App11.Model
         public string _dagensRetTirsdag;
         public string _dagensRetOnsdag;
         public string _dagensRetTorsdag;
+        public int _husNr;
+        public int _antalUnge;
+        public int _antalVoksne;
+        public int _antalSmåBørn;
+        public int _antalStoreBørn;
 
         public string _arbejdsOpgave;
         public string _navn;
         public string _dag;
-
+       
         public DeltagerList Mandagsliste
         { get { return _mandagsliste; } }
         public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
@@ -69,6 +74,71 @@ namespace App11.Model
         public Relaycommand TilføjDeltager { get; set; }
         public Relaycommand TilføjNyArbejdsOpgave { get; set; }
 
+        public int husNr
+        {
+            get
+            {
+                return this._husNr;
+            }
+            set
+            {
+                this._husNr = value;
+                OnPropertyChanged(nameof(husNr));
+            }
+        }
+        public int antalUnge
+        {
+            get
+            {
+                return this._antalUnge;
+            }
+            set
+            {
+                this._antalUnge = value;
+                OnPropertyChanged(nameof(antalUnge));
+            }
+        }
+        public double gangeForUnge { get; set; }
+        public int antalSmåBørn
+        {
+            get
+            {
+                return this._antalSmåBørn;
+            }
+            set
+            {
+                this._antalSmåBørn = value;
+                OnPropertyChanged(nameof(antalSmåBørn));
+            }
+        }
+   
+
+        public int antalStoreBørn
+        {
+            get
+            {
+                return this._antalStoreBørn;
+            }
+            set
+            {
+                this._antalStoreBørn = value;
+                OnPropertyChanged(nameof(antalStoreBørn));
+            }
+        }
+
+        public double gangeForStoreBørn { get; set; }
+        public int antalVoksne
+        {
+            get
+            {
+                return this._antalVoksne;
+            }
+            set
+            {
+                this._antalVoksne = value;
+                OnPropertyChanged(nameof(antalVoksne));
+            }
+        }
         public string DagensRetMandag
         {
             get
@@ -143,31 +213,31 @@ namespace App11.Model
 
             }
         }
-        private Dictionary<int, Double> Prisdict;
+       // private Dictionary<int, Double> Prisdict;
 
         public FællesViewmodel()
         {
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
-
+            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
             TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
-            _mandagsliste.Add(1, new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _mandagsliste.Add(2, new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _mandagsliste.Add(3, new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _mandagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _tirsdagsliste = new DeltagerList();
-            _tirsdagsliste.Add(1, new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _tirsdagsliste.Add(2, new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _tirsdagsliste.Add(3, new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _tirsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _tirsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _tirsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _onsdagsliste = new DeltagerList();
-            _onsdagsliste.Add(1, new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _onsdagsliste.Add(2, new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _onsdagsliste.Add(3, new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _onsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _onsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _onsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _torsdagsliste = new DeltagerList();
-            _torsdagsliste.Add(1, new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _torsdagsliste.Add(2, new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _torsdagsliste.Add(3, new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
+            _torsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
+            _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
+            _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _arbejdsListe = new ArbejdsOpgaveListe();
 
         }
@@ -184,10 +254,14 @@ namespace App11.Model
         }
 
 
-        private void TilføjDeltagerMetode()
+        public void TilføjDeltagerMetode()
         {
-           // Deltagere  = new Deltagere()
- 
+           
+         
+  
+            
+
+
         }
 
         private void TilføjMetode()
@@ -209,38 +283,37 @@ namespace App11.Model
         {
 
 
-            foreach (KeyValuePair<int,Deltagere> deltager in Mandagsliste)
+            foreach (Deltagere deltager in Mandagsliste)
             {
-                KuverterMandag = KuverterMandag + (deltager.Value.antalVoksne * deltager.Value.gangeForVoksne + 
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn);
+                KuverterMandag = KuverterMandag + (deltager.antalVoksne * deltager.gangeForVoksne + 
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn);
 
             }
 
-            foreach (KeyValuePair<int, Deltagere> deltager in Tirsdagsliste)
+            foreach (Deltagere deltager in Tirsdagsliste)
             {
                 KuverterTirsdag = KuverterTirsdag +
-                   (deltager.Value.antalVoksne * deltager.Value.gangeForVoksne +
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn);
+                   (deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn);
             }
 
 
-                foreach (KeyValuePair<int, Deltagere> deltager in Onsdagsliste)
+                foreach (Deltagere deltager in Onsdagsliste)
             {
-             KuverterOnsdag = KuverterOnsdag + (deltager.Value.antalVoksne * deltager.Value.gangeForVoksne +
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn);
+             KuverterOnsdag = KuverterOnsdag + (deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn);
                 }
 
 
-            foreach (KeyValuePair<int, Deltagere> deltager in Torsdagsliste)
+            foreach (Deltagere deltager in Torsdagsliste)
             {
-                KuverterTorsdag = KuverterTorsdag +
-               (deltager.Value.antalVoksne * deltager.Value.gangeForVoksne +
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn);
-                }
+                KuverterTorsdag = KuverterTorsdag + (deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn);
+            }
 
 
             KuverterOmUgen = KuverterMandag + KuverterTirsdag + KuverterOnsdag + KuverterTorsdag; 
@@ -252,43 +325,43 @@ namespace App11.Model
         {
 
             BeregnKurverter();
+
+            foreach (Deltagere deltager in Mandagsliste)
+            {
+                deltager.PrisPrFamilie = (_prisIalt / KuverterMandag) *
+                    ((deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+            }
+
+        
             
-            foreach (KeyValuePair<int, Deltagere> deltager in Mandagsliste)
+            foreach (Deltagere deltager in Tirsdagsliste)
             {
-                deltager.Value.PrisPrFamilie = (_prisIalt / KuverterMandag) *
-                    ((deltager.Value.antalVoksne * deltager.Value.gangeForVoksne + 
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); 
-              
-
-            }
-            foreach (KeyValuePair<int, Deltagere> deltager in Tirsdagsliste)
-            {
-                deltager.Value.PrisPrFamilie = (_prisIalt / KuverterTirsdag) *
-                    ((deltager.Value.antalVoksne * deltager.Value.gangeForVoksne +
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); ;
-
+                deltager.PrisPrFamilie = (_prisIalt / KuverterTirsdag) *
+                                ((deltager.antalVoksne* deltager.gangeForVoksne +
+                    deltager.antalUnge* deltager.gangeForUnge +
+                    deltager.antalStoreBørn* deltager.gangeForStoreBørn));
             }
 
-            foreach (KeyValuePair<int, Deltagere> deltager in Onsdagsliste)
+            foreach (Deltagere deltager in Onsdagsliste)
             {
-                deltager.Value.PrisPrFamilie = (_prisIalt / KuverterOnsdag) *
-                    ((deltager.Value.antalVoksne * deltager.Value.gangeForVoksne +
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); ;
+                deltager.PrisPrFamilie = (_prisIalt / KuverterOnsdag) *
+                ((deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
             }
 
-            foreach (KeyValuePair<int, Deltagere> deltager in Torsdagsliste)
+            foreach (Deltagere deltager in Torsdagsliste)
             {
-                deltager.Value.PrisPrFamilie = (_prisIalt / KuverterTorsdag) *
-                    ((deltager.Value.antalVoksne * deltager.Value.gangeForVoksne +
-                    deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                    deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); ;
+                deltager.PrisPrFamilie = (_prisIalt / KuverterTorsdag) *
+                                      ((deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
-                
-    
+
+
             }
             
            
@@ -300,9 +373,9 @@ namespace App11.Model
         {
             
 
-            foreach (KeyValuePair<int, Deltagere> deltager in Mandagsliste)
+            foreach (Deltagere deltager in Mandagsliste)
             {
-                Prislist.Add($"Hus Nr {deltager.Key} skal betale {deltager.Value.PrisPrFamilie}");
+                Prislist.Add($"Hus Nr {deltager.husNr} skal betale {deltager.PrisPrFamilie}");
             }
 
            
@@ -314,12 +387,12 @@ namespace App11.Model
         {
             BeregnKurverter();
             {
-                foreach (KeyValuePair<int, Deltagere> deltager in Mandagsliste)
+                foreach (Deltagere deltager in Mandagsliste)
                 {
-                    deltager.Value.PrisPrFamilie = (_prisIalt / KuverterMandag) * 
-                        ((deltager.Value.antalVoksne * deltager.Value.gangeForVoksne + 
-                        deltager.Value.antalUnge * deltager.Value.gangeForUnge +
-                        deltager.Value.antalStoreBørn * deltager.Value.gangeForStoreBørn)); ;
+                    deltager.PrisPrFamilie = (_prisIalt / KuverterMandag) * 
+                        ((deltager.antalVoksne * deltager.gangeForVoksne + 
+                        deltager.antalUnge * deltager.gangeForUnge +
+                        deltager.antalStoreBørn * deltager.gangeForStoreBørn)); ;
                 }
                 
 
