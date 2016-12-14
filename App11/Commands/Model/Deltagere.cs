@@ -18,17 +18,19 @@ namespace App11.Model
         public double gangeForStoreBørn { get; set; }
         public int antalVoksne { get; set; }
         public double gangeForVoksne { get; set; }
-        public double _kuvertpris { get; set; }
+        public double PrisPrHus{ get; set; }
+        public double PrisPrFamilie { get; set; }
         public Deltagere()
+
         {
             this.gangeForSmåBørn = 0;
             this.gangeForStoreBørn = 0.25;
             this.gangeForUnge = 0.50;
             this.gangeForVoksne = 1;
-            this.KuverterPrHus = gangeForSmåBørn + gangeForStoreBørn + gangeForUnge + gangeForVoksne;
+
         }
 
-        
+      
 
 
         public override string ToString()

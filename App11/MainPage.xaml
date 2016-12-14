@@ -20,10 +20,28 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
-        <GridView x:Name="gridView" Margin="75,53,0,151" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}" HorizontalAlignment="Left" Width="195">
+        <GridView x:Name="gridView" Margin="75,53,0,151" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}" HorizontalAlignment="Left" Width="195" SelectionChanged="gridView_SelectionChanged">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
         </GridView>
         <GridView x:Name="gridView_Copy" Margin="0,53,301,151" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}">
             <GridView.Background>

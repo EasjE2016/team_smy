@@ -46,5 +46,10 @@ namespace App11
         {
             this.Frame.Navigate(typeof(App11.MainPage2));
         }
+
+        private void gridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

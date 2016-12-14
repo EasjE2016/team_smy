@@ -108,19 +108,19 @@
     <Compile Include="MainPage3.xaml.cs">
       <DependentUpon>MainPage3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ArbejdsOpgaveListe.cs" />
-    <Compile Include="Model\ArbejdsOpgaver.cs" />
-    <Compile Include="Model\Deltagere.cs" />
-    <Compile Include="Model\DeltagerList.cs" />
-    <Compile Include="Model\FællesViewmodel.cs" />
-    <Compile Include="Model\ItemsChangeObservableCollection.cs" />
+    <Compile Include="Commands\Model\ArbejdsOpgaveListe.cs" />
+    <Compile Include="Commands\Model\ArbejdsOpgaver.cs" />
+    <Compile Include="Commands\Model\Deltagere.cs" />
+    <Compile Include="Commands\Model\DeltagerList.cs" />
+    <Compile Include="Commands\Model\FællesViewmodel.cs" />
+    <Compile Include="Commands\Model\ItemsChangeObservableCollection.cs" />
+    <Compile Include="Commands\Model\TilføjOgAfmeld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="App11_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="baggrund1.png" />
