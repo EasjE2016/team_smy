@@ -11,13 +11,14 @@ using Windows.Storage;
 using Windows.UI.Popups;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace App11.Model
 {
     public class FællesViewmodel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+        //Instance fields
         private DeltagerList _mandagsliste;
         private DeltagerList _tirsdagsliste;
         private DeltagerList _onsdagsliste;
@@ -169,9 +170,19 @@ namespace App11.Model
             _torsdagsliste.Add(3, new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _arbejdsListe = new ArbejdsOpgaveListe();
 
-
-
         }
+
+        //Json
+        public string GetJson()
+        {
+            string json = JsonConvert.SerializeObject(this);
+            return json;
+        }
+        public void IndsætJson(string jsonText)
+        {
+            List<Deltagere> nyListe = JsonConvert.DeserializeObject<List<Deltagere>>(jsonText);
+        }
+
 
         private void TilføjDeltagerMetode()
         {
