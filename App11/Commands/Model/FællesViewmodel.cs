@@ -74,6 +74,8 @@ namespace App11.Model
         public Relaycommand TilføjDeltager { get; set; }
         public Relaycommand TilføjNyArbejdsOpgave { get; set; }
 
+
+        public List<string> Combobox { get; set; }
         public int husNr
         {
             get
@@ -217,6 +219,11 @@ namespace App11.Model
 
         public FællesViewmodel()
         {
+            Combobox = new List<string>();
+            Combobox.Add(Dag = "Mandag");
+            Combobox.Add(Dag = "Tirsdag");
+            Combobox.Add(Dag = "Onsdag");
+            Combobox.Add(Dag = "Torsdag");
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
             TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
@@ -239,6 +246,7 @@ namespace App11.Model
             _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
             _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _arbejdsListe = new ArbejdsOpgaveListe();
+            
 
         }
 
@@ -252,16 +260,64 @@ namespace App11.Model
         {
             List<Deltagere> nyListe = JsonConvert.DeserializeObject<List<Deltagere>>(jsonText);
         }
+        
 
 
         public void TilføjDeltagerMetode()
         {
-           
-         
-  
-            
+            if (Dag == "Mandag")
+            {
+                _mandagsliste.Add(new Deltagere()
+                {
+                    husNr = husNr,
+                    antalVoksne = antalVoksne,
+                    antalUnge = antalUnge,
+                    antalStoreBørn = antalStoreBørn,
+                    antalSmåBørn = antalSmåBørn
 
+                });
+            }
+       
+            else if (Dag == "Tirsdag")
+            {
+                _tirsdagsliste.Add(new Deltagere()
+                {
+                    husNr = husNr,
+                    antalVoksne = antalVoksne,
+                    antalUnge = antalUnge,
+                    antalStoreBørn = antalStoreBørn,
+                    antalSmåBørn = antalSmåBørn
+                });
+            }
+      
+            else if (Dag == "Onsdag")
+            {
+                _onsdagsliste.Add(new Deltagere()
+                {
+                    husNr = husNr,
+                    antalVoksne = antalVoksne,
+                    antalUnge = antalUnge,
+                    antalStoreBørn = antalStoreBørn,
+                    antalSmåBørn = antalSmåBørn
+                });
+            }
 
+            else if (Dag == "Torsdag")
+            {
+                _torsdagsliste.Add(new Deltagere()
+                {
+                    husNr = husNr,
+                    antalVoksne = antalVoksne,
+                    antalUnge = antalUnge,
+                    antalStoreBørn = antalStoreBørn,
+                    antalSmåBørn = antalSmåBørn
+                });
+            }
+      
+            else
+            {
+                MessageDialog showDialog = new MessageDialog("Denne dag eksistere desværre ikke");
+            }
         }
 
         private void TilføjMetode()

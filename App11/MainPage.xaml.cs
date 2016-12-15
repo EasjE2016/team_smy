@@ -51,5 +51,16 @@ namespace App11
         {
 
         }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+           
+        }
+
     }
 }

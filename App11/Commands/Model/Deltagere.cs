@@ -36,9 +36,9 @@ namespace App11.Model
 
         public override string ToString()
         {
-            return "Hus nr: " + husNr +
+            return "Hus: " + husNr +
 
-               "  Antal unge(7-15), store børn (3-6), små børn (0-3): "
+               "  Unge(7-15), Børn(3-6), Børn (0-3): "
 
 
 

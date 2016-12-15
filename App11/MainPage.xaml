@@ -20,7 +20,7 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
-        <GridView x:Name="gridView" Margin="75,53,0,151" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}" HorizontalAlignment="Left" Width="195" SelectionChanged="gridView_SelectionChanged">
+        <GridView x:Name="gridView" Margin="76,84,0,222" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}" HorizontalAlignment="Left" Width="195" SelectionChanged="gridView_SelectionChanged">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
@@ -37,34 +37,50 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            
+
                         </Grid>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <GridView x:Name="gridView_Copy" Margin="0,53,301,151" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}">
+        <GridView x:Name="gridView_Copy" Margin="0,84,530,222" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
         </GridView>
-        <GridView x:Name="gridView_Copy1" Margin="309,53,0,151" Header="Onsdag" ItemsSource="{Binding Onsdagsliste}" HorizontalAlignment="Left" Width="194">
+        <GridView x:Name="gridView_Copy1" Margin="530,85,0,221" Header="Onsdag" ItemsSource="{Binding Onsdagsliste}" HorizontalAlignment="Left" Width="194">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
         </GridView>
-        <GridView x:Name="gridView_Copy2" Margin="0,51,71,153" HorizontalAlignment="Right" Width="194" Header="Torsdag" ItemsSource="{Binding Torsdagsliste}">
+        <GridView x:Name="gridView_Copy2" Margin="0,82,70,224" HorizontalAlignment="Right" Width="194" Header="Torsdag" ItemsSource="{Binding Torsdagsliste}">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
 
         </GridView>
-        <TextBlock x:Name="textBlock1" Height="22" Margin="75,26,0,0" TextWrapping="Wrap" Text="Dagens ret" VerticalAlignment="Top" HorizontalAlignment="Left" Width="183" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <TextBlock x:Name="textBlock1_Copy" Height="22" Margin="0,26,521,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <TextBlock x:Name="textBlock1_Copy1" Height="22" Margin="0,26,301,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <TextBlock x:Name="textBlock1_Copy2" Height="22" Margin="0,26,71,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" d:LayoutOverrides="HorizontalAlignment" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <Button x:Name="button" Content="Beregn" HorizontalAlignment="Right" Height="55" Margin="0,0,354,30" VerticalAlignment="Bottom" Width="141" Click="button_Click"/>
-        <Button x:Name="button1" Content="Mad " Height="55" Margin="362,0,0,30" VerticalAlignment="Bottom" Width="141" HorizontalAlignment="Left" Click="button1_Click"/>
+        <TextBlock x:Name="textBlock1" Height="17" Margin="76,63,0,0" TextWrapping="Wrap" Text="Dagens ret" VerticalAlignment="Top" HorizontalAlignment="Left" Width="183" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy" Height="17" Margin="0,64,300,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy1" Height="17" Margin="0,63,530,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy2" Height="17" Margin="0,63,70,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <Button x:Name="button" Content="Beregn" HorizontalAlignment="Right" Height="30" Margin="0,0,0,610" VerticalAlignment="Bottom" Width="514" Click="button_Click"/>
+        <Button x:Name="button1" Content="Mad " Height="30" Margin="0,0,0,610" VerticalAlignment="Bottom" Width="510" HorizontalAlignment="Left" Click="button1_Click"/>
+        <TextBox x:Name="textBox1" Margin="299,0,0,110" TextWrapping="Wrap" Text="{Binding husNr, Mode=TwoWay}" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Left" Width="195" PlaceholderText="Hus nr?"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Right" Margin="0,0,300,110" TextWrapping="Wrap" Text="{Binding antalVoksne, Mode=TwoWay}" VerticalAlignment="Bottom" Height="40" Width="194" PlaceholderText="Antal voksne?"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="40" Margin="300,0,0,65" TextWrapping="Wrap" Text="{Binding antalUnge, Mode=TwoWay}" VerticalAlignment="Bottom" Width="194" PlaceholderText="Antal unge?"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Right" Height="40" Margin="0,0,300,65" TextWrapping="Wrap" Text="{Binding antalStoreBørn, Mode=TwoWay}" VerticalAlignment="Bottom" Width="194" PlaceholderText="Antal børn (3+)?"/>
+        <TextBox x:Name="textBox5" Height="40" Margin="423,0,407,10" TextWrapping="Wrap" Text="{Binding antalSmåBørn, Mode=TwoWay}" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition" PlaceholderText="Børn (u3)?"/>
+        <Button x:Name="button2" Content="Tilmeld" HorizontalAlignment="Right" Height="40" Margin="0,0,70,97" VerticalAlignment="Bottom" Width="154" Command="{Binding TilføjDeltager}">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button3" Content="Fjern" HorizontalAlignment="Left" Height="40" Margin="81,0,0,97" VerticalAlignment="Bottom" Width="154">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
+            </Button.Background>
+        </Button>
+        <ComboBox x:Name="comboBox" ItemsSource="{Binding Combobox}" SelectedItem="{Binding Combobox, Mode=TwoWay}" HorizontalAlignment="Stretch" Height="40" Margin="428,0,374,167" VerticalAlignment="Bottom" PlaceholderText="Hvilken dag vil du deltage?" SelectionChanged="comboBox_SelectionChanged" />
 
     </Grid>
 </Page>
