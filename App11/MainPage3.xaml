@@ -40,10 +40,10 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="38" Margin="167,0,0,167" TextWrapping="Wrap" Text="{Binding Navn, Mode=TwoWay}" VerticalAlignment="Bottom" Width="142"/>
-        <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="38" Margin="167,0,0,126" TextWrapping="Wrap" Text="{Binding Dag, Mode=TwoWay}" VerticalAlignment="Bottom" Width="142"/>
+        <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="38" Margin="167,0,0,126" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="142" TextChanged="textBox1_Copy_TextChanged" Text="{Binding Dag, Mode=TwoWay}"/>
         <TextBox x:Name="textBox1_Copy1" HorizontalAlignment="Left" Height="38" Margin="167,0,0,83" TextWrapping="Wrap" Text="{Binding ArbejdsOpgave, Mode=TwoWay}" VerticalAlignment="Bottom" Width="142"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="38" Margin="76,0,0,167" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="122" FontSize="32" Text="Navn:"/>
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="49" Margin="90,0,0,121" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="122" FontSize="32">
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="49" Margin="90,0,0,121" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="122" FontSize="32" SelectionChanged="textBlock1_Copy_SelectionChanged">
         	<Run Text="Dag"/>
         	<Run Text=":"/>
         </TextBlock>

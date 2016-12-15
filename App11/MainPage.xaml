@@ -80,7 +80,7 @@
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </Button.Background>
         </Button>
-        <ComboBox x:Name="comboBox" ItemsSource="{Binding Combobox}" SelectedItem="{Binding Combobox, Mode=TwoWay}" HorizontalAlignment="Stretch" Height="40" Margin="428,0,374,167" VerticalAlignment="Bottom" PlaceholderText="Hvilken dag vil du deltage?" SelectionChanged="comboBox_SelectionChanged" />
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" Height="40" Margin="428,0,374,167" VerticalAlignment="Bottom" PlaceholderText="Hvilken dag vil du deltage?" SelectionChanged="comboBox_SelectionChanged" ItemsSource="{Binding Combobox}" />
 
     </Grid>
 </Page>

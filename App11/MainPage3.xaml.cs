@@ -36,5 +36,15 @@ namespace App11
         {
 
         }
+
+        private void textBox1_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBlock1_Copy_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

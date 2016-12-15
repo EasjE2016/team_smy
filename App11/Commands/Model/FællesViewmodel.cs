@@ -47,11 +47,10 @@ namespace App11.Model
         public string _navn;
         public string _dag;
        
-        public DeltagerList Mandagsliste
-        { get { return _mandagsliste; } }
-        public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
-        public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
-        public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
+        public DeltagerList Mandagsliste    { get { return _mandagsliste; } }
+        public DeltagerList Tirsdagsliste   { get { return _tirsdagsliste; } }
+        public DeltagerList Onsdagsliste     { get { return _onsdagsliste; } }
+        public DeltagerList Torsdagsliste   { get { return _torsdagsliste; } }
 
         public ArbejdsOpgaveListe ArbejdsListe { get { return _arbejdsListe; } }
 
@@ -215,20 +214,17 @@ namespace App11.Model
 
             }
         }
-       // private Dictionary<int, Double> Prisdict;
+
+       private Dictionary<int, Double> Prisdict;
 
         public FællesViewmodel()
         {
-            Combobox = new List<string>();
-            Combobox.Add(Dag = "Mandag");
-            Combobox.Add(Dag = "Tirsdag");
-            Combobox.Add(Dag = "Onsdag");
-            Combobox.Add(Dag = "Torsdag");
+
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
-            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+        TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+         TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
             _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
             _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
@@ -246,7 +242,11 @@ namespace App11.Model
             _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
             _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _arbejdsListe = new ArbejdsOpgaveListe();
-            
+            Combobox = new List<string>();
+            Combobox.Add("Mandag");
+            Combobox.Add("Tirsdag");
+            Combobox.Add("Onsdag");
+            Combobox.Add("Torsdag");
 
         }
 
@@ -260,12 +260,12 @@ namespace App11.Model
         {
             List<Deltagere> nyListe = JsonConvert.DeserializeObject<List<Deltagere>>(jsonText);
         }
-        
+
 
 
         public void TilføjDeltagerMetode()
         {
-            if (Dag == "Mandag")
+            if (this.Dag == this.Combobox[0])
             {
                 _mandagsliste.Add(new Deltagere()
                 {
@@ -277,8 +277,8 @@ namespace App11.Model
 
                 });
             }
-       
-            else if (Dag == "Tirsdag")
+
+            if (this.Dag == this.Combobox[1])
             {
                 _tirsdagsliste.Add(new Deltagere()
                 {
@@ -289,8 +289,8 @@ namespace App11.Model
                     antalSmåBørn = antalSmåBørn
                 });
             }
-      
-            else if (Dag == "Onsdag")
+
+            if (this.Dag == this.Combobox[2])
             {
                 _onsdagsliste.Add(new Deltagere()
                 {
@@ -302,7 +302,7 @@ namespace App11.Model
                 });
             }
 
-            else if (Dag == "Torsdag")
+        if (Dag == this.Combobox [3])
             {
                 _torsdagsliste.Add(new Deltagere()
                 {
@@ -319,7 +319,7 @@ namespace App11.Model
                 MessageDialog showDialog = new MessageDialog("Denne dag eksistere desværre ikke");
             }
         }
-
+        
         private void TilføjMetode()
         {
 
