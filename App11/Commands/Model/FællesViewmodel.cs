@@ -48,6 +48,7 @@ namespace App11.Model
         public int _antalVoksne;
         public int _antalSmåBørn;
         public int _antalStoreBørn;
+        
 
         public string _arbejdsOpgave;
         public string _navn;
@@ -258,6 +259,7 @@ namespace App11.Model
             HentdataFraDiskAsyncMandag();
             HentdataFraDiskAsyncTirsdag();
             HentdataFraDiskAsyncOnsdag();
+            HentdataFraDiskAsyncTorsdag();
         }
 
         private void DeleteDeltagerMetode()
