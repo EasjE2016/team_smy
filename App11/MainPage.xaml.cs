@@ -71,5 +71,10 @@ namespace App11
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

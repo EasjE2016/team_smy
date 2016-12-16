@@ -30,6 +30,9 @@ namespace App11.Model
         public double KuverterOnsdag;
         public double KuverterOmUgen;
         private Deltagere selectedDeltager;
+        StorageFolder localfolder = null;
+        private readonly string filnavn = "Mandag.json";
+
 
         public ObservableCollection<string> Prislist { get; set; }
 
@@ -249,6 +252,7 @@ namespace App11.Model
             Combobox.Add("Tirsdag");
             Combobox.Add("Onsdag");
             Combobox.Add("Torsdag");
+            localfolder = ApplicationData.Current.LocalFolder;
 
         }
 
@@ -265,12 +269,43 @@ namespace App11.Model
         //Json
         public string GetJson()
         {
-            string json = JsonConvert.SerializeObject(this);
+            string json = JsonConvert.SerializeObject(_mandagsliste);
             return json;
         }
         public void IndsætJson(string jsonText)
         {
-            List<Deltagere> nyListe = JsonConvert.DeserializeObject<List<Deltagere>>(jsonText);
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _mandagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _mandagsliste.Add(item);
+            }
+        }
+
+        /*
+        const String FileNameTilmelding = "saveTilmeling.json";
+        public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
+        */
+        public async void HentdataFraDiskAsync()
+        {
+            try
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavn);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJson(jsonText);
+               
+            }
+            catch (Exception)
+            {
+                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
+                await messageDialog.ShowAsync();
+            }
+        }
+
+        public async void GemDataTilDiskAsync(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
         }
 
 
