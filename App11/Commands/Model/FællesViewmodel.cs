@@ -31,7 +31,7 @@ namespace App11.Model
         public double KuverterOmUgen;
         private Deltagere selectedDeltager;
         StorageFolder localfolder = null;
-        private readonly string filnavn = "Mandag.json";
+        private readonly string filnavn = "JsonText.json";
 
 
         public ObservableCollection<string> Prislist { get; set; }
@@ -253,7 +253,7 @@ namespace App11.Model
             Combobox.Add("Onsdag");
             Combobox.Add("Torsdag");
             localfolder = ApplicationData.Current.LocalFolder;
-
+            HentdataFraDiskAsync();
         }
 
         private void DeleteDeltagerMetode()
@@ -365,6 +365,9 @@ namespace App11.Model
             {
                 MessageDialog showDialog = new MessageDialog("Denne dag eksistere desværre ikke");
             }
+
+            GemDataTilDiskAsync(GetJson());
+
         }
         
         private void TilføjMetode()
