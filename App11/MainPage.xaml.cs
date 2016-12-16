@@ -62,5 +62,14 @@ namespace App11
            
         }
 
+        private void gridView_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void gridView_Copy2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

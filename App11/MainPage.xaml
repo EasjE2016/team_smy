@@ -20,40 +20,25 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
-        <GridView x:Name="gridView" Margin="76,84,0,222" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}" HorizontalAlignment="Left" Width="195" SelectionChanged="gridView_SelectionChanged">
+        <GridView x:Name="gridView" Margin="76,84,0,222" IsSynchronizedWithCurrentItem="False" Header="Mandag" ItemsSource="{Binding Mandagsliste}"  SelectedItem="{Binding SelectedDeltager, Mode=TwoWay}" HorizontalAlignment="Left" Width="195" SelectionChanged="gridView_SelectionChanged">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-
-                        </Grid>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
+         
+                      
+                     
         </GridView>
-        <GridView x:Name="gridView_Copy" Margin="0,84,530,222" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}">
+        <GridView x:Name="gridView_Copy" Margin="0,84,530,222" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}" SelectedItem="{Binding SelectedDeltager, Mode=TwoWay}" SelectionChanged="gridView_Copy_SelectionChanged">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
         </GridView>
-        <GridView x:Name="gridView_Copy1" Margin="530,85,0,221" Header="Onsdag" ItemsSource="{Binding Onsdagsliste}" HorizontalAlignment="Left" Width="194">
+        <GridView x:Name="gridView_Copy1" Margin="530,85,0,221" Header="Onsdag" ItemsSource="{Binding Onsdagsliste}"  SelectedItem="{Binding SelectedDeltager, Mode=TwoWay}" HorizontalAlignment="Left" Width="194">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
         </GridView>
-        <GridView x:Name="gridView_Copy2" Margin="0,82,70,224" HorizontalAlignment="Right" Width="194" Header="Torsdag" ItemsSource="{Binding Torsdagsliste}">
+        <GridView x:Name="gridView_Copy2" Margin="0,82,70,224" HorizontalAlignment="Right" Width="194" Header="Torsdag" ItemsSource="{Binding Torsdagsliste}"  SelectedItem="{Binding SelectedDeltager, Mode=TwoWay}" SelectionChanged="gridView_Copy2_SelectionChanged">
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
@@ -75,12 +60,12 @@
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button3" Content="Fjern" HorizontalAlignment="Left" Height="40" Margin="81,0,0,97" VerticalAlignment="Bottom" Width="154">
+        <Button x:Name="button3" Content="Fjern" HorizontalAlignment="Left" Height="40" Margin="81,0,0,97" VerticalAlignment="Bottom" Width="154" Command="{Binding DeleteDeltager, Mode=OneWay}">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </Button.Background>
         </Button>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" Height="40" Margin="428,0,374,167" VerticalAlignment="Bottom" PlaceholderText="Hvilken dag vil du deltage?" SelectionChanged="comboBox_SelectionChanged" ItemsSource="{Binding Combobox}" />
+        <ComboBox x:Name="comboBox" ItemsSource="{Binding Combobox}" SelectedItem="{Binding Dag, Mode=TwoWay}" HorizontalAlignment="Stretch" Height="40" Margin="428,0,374,167" VerticalAlignment="Bottom" PlaceholderText="Hvilken dag vil du deltage?" SelectionChanged="comboBox_SelectionChanged" />
 
     </Grid>
 </Page>

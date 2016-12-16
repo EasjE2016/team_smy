@@ -29,7 +29,8 @@ namespace App11.Model
         public double KuverterTorsdag;
         public double KuverterOnsdag;
         public double KuverterOmUgen;
-       
+        private Deltagere selectedDeltager;
+
         public ObservableCollection<string> Prislist { get; set; }
 
         public double _prisIalt;
@@ -75,6 +76,17 @@ namespace App11.Model
 
 
         public List<string> Combobox { get; set; }
+
+        public Deltagere SelectedDeltager
+        {
+            get { return selectedDeltager; }
+            set
+            {
+                selectedDeltager = value;
+                OnPropertyChanged(nameof(SelectedDeltager));
+            }
+        }
+
         public int husNr
         {
             get
@@ -126,7 +138,7 @@ namespace App11.Model
                 OnPropertyChanged(nameof(antalStoreBørn));
             }
         }
-
+        public Relaycommand DeleteDeltager { get;/* private set;*/ }
         public double gangeForStoreBørn { get; set; }
         public int antalVoksne
         {
@@ -215,6 +227,7 @@ namespace App11.Model
             }
         }
 
+
        private Dictionary<int, Double> Prisdict;
 
         public FællesViewmodel()
@@ -225,22 +238,11 @@ namespace App11.Model
         TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
          TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+           DeleteDeltager  = new Relaycommand(DeleteDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
-            _mandagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _mandagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _mandagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _tirsdagsliste = new DeltagerList();
-            _tirsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _tirsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _tirsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _onsdagsliste = new DeltagerList();
-            _onsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _onsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _onsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _torsdagsliste = new DeltagerList();
-            _torsdagsliste.Add(new Deltagere() { husNr = 1, antalVoksne = 2, antalUnge = 1, antalSmåBørn = 0, antalStoreBørn = 1 });
-            _torsdagsliste.Add(new Deltagere() { husNr = 2, antalVoksne = 1, antalUnge = 2, antalSmåBørn = 1, antalStoreBørn = 0 });
-            _torsdagsliste.Add(new Deltagere() { husNr = 3, antalVoksne = 2, antalUnge = 0 });
             _arbejdsListe = new ArbejdsOpgaveListe();
             Combobox = new List<string>();
             Combobox.Add("Mandag");
@@ -249,6 +251,16 @@ namespace App11.Model
             Combobox.Add("Torsdag");
 
         }
+
+        private void DeleteDeltagerMetode()
+        {
+            _mandagsliste.Remove(selectedDeltager);
+            _tirsdagsliste.Remove(selectedDeltager);
+            _onsdagsliste.Remove(selectedDeltager);
+            _torsdagsliste.Remove(selectedDeltager);
+          
+        
+    }
 
         //Json
         public string GetJson()
