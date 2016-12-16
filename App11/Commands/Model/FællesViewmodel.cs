@@ -47,11 +47,11 @@ namespace App11.Model
         public string _arbejdsOpgave;
         public string _navn;
         public string _dag;
-       
-        public DeltagerList Mandagsliste    { get { return _mandagsliste; } }
-        public DeltagerList Tirsdagsliste   { get { return _tirsdagsliste; } }
-        public DeltagerList Onsdagsliste     { get { return _onsdagsliste; } }
-        public DeltagerList Torsdagsliste   { get { return _torsdagsliste; } }
+
+        public DeltagerList Mandagsliste { get { return _mandagsliste; } }
+        public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
+        public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
+        public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
 
         public ArbejdsOpgaveListe ArbejdsListe { get { return _arbejdsListe; } }
 
@@ -86,6 +86,8 @@ namespace App11.Model
                 OnPropertyChanged(nameof(SelectedDeltager));
             }
         }
+
+        
 
         public int husNr
         {
@@ -124,7 +126,7 @@ namespace App11.Model
                 OnPropertyChanged(nameof(antalSmåBørn));
             }
         }
-   
+
 
         public int antalStoreBørn
         {
@@ -227,18 +229,18 @@ namespace App11.Model
             }
         }
 
-
-       private Dictionary<int, Double> Prisdict;
+        
+        private Dictionary<int, Double> Prisdict;
 
         public FællesViewmodel()
         {
-
+            
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
-        TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-         TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
-           DeleteDeltager  = new Relaycommand(DeleteDeltagerMetode, null);
+            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+            DeleteDeltager = new Relaycommand(DeleteDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
             _tirsdagsliste = new DeltagerList();
             _onsdagsliste = new DeltagerList();
@@ -249,8 +251,12 @@ namespace App11.Model
             Combobox.Add("Tirsdag");
             Combobox.Add("Onsdag");
             Combobox.Add("Torsdag");
-
+            
         }
+
+        
+
+   
 
         private void DeleteDeltagerMetode()
         {
