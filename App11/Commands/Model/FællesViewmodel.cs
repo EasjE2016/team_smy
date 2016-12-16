@@ -31,8 +31,11 @@ namespace App11.Model
         public double KuverterOmUgen;
         private Deltagere selectedDeltager;
         StorageFolder localfolder = null;
-        private readonly string filnavn = "JsonText.json";
-
+        private readonly string filnavnTilmeldingMandag = "Mandag.json";
+        /*private readonly string filnavnTilmeldingTirsdag = "Tirsdag.json";
+        private readonly string filnavnTilmeldingOnsdag = "Onsdag.json";
+        private readonly string filnavnTilmeldingTorsdag = "Torsdag.json";
+        */
 
         public ObservableCollection<string> Prislist { get; set; }
 
@@ -262,9 +265,11 @@ namespace App11.Model
             _tirsdagsliste.Remove(selectedDeltager);
             _onsdagsliste.Remove(selectedDeltager);
             _torsdagsliste.Remove(selectedDeltager);
-          
-        
-    }
+
+            GemDataTilDiskAsync(GetJson());
+
+
+        }
 
         //Json
         public string GetJson()
@@ -282,15 +287,12 @@ namespace App11.Model
             }
         }
 
-        /*
-        const String FileNameTilmelding = "saveTilmeling.json";
-        public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
-        */
+       
         public async void HentdataFraDiskAsync()
         {
             try
             {
-                StorageFile file = await localfolder.GetFileAsync(filnavn);
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingMandag);
                 string jsonText = await FileIO.ReadTextAsync(file);
                 IndsætJson(jsonText);
                
@@ -304,7 +306,7 @@ namespace App11.Model
 
         public async void GemDataTilDiskAsync(string JsonText)
         {
-            StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingMandag, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, JsonText);
         }
 
