@@ -50,11 +50,11 @@
         <TextBlock x:Name="textBlock1_Copy2" Height="17" Margin="0,63,70,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
         <Button x:Name="button" Content="Beregn" HorizontalAlignment="Right" Height="30" Margin="0,0,0,610" VerticalAlignment="Bottom" Width="514" Click="button_Click"/>
         <Button x:Name="button1" Content="Mad " Height="30" Margin="0,0,0,610" VerticalAlignment="Bottom" Width="510" HorizontalAlignment="Left" Click="button1_Click"/>
-        <TextBox x:Name="textBox1" Margin="299,0,0,110" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Left" Width="195" PlaceholderText="Hus nr?" TextChanged="textBox1_TextChanged"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Right" Margin="0,0,300,110" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Height="40" Width="194" PlaceholderText="Antal voksne?"/>
-        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="40" Margin="300,0,0,65" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="194" PlaceholderText="Antal unge?"/>
-        <TextBox x:Name="textBox4" HorizontalAlignment="Right" Height="40" Margin="0,0,300,65" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="194" PlaceholderText="Antal børn (3+)?"/>
-        <TextBox x:Name="textBox5" Height="40" Margin="423,0,407,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition" PlaceholderText="Børn (u3)?"/>
+        <TextBox x:Name="textBox1" Margin="299,0,0,110" TextWrapping="Wrap" Text="{Binding husNr, Mode=TwoWay}" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Left" Width="195" PlaceholderText="Hus nr?" TextChanged="textBox1_TextChanged"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Right" Margin="0,0,300,110" TextWrapping="Wrap" Text="{Binding antalVoksne, Mode=TwoWay}" VerticalAlignment="Bottom" Height="40" Width="194" PlaceholderText="Antal voksne?"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="40" Margin="300,0,0,65" TextWrapping="Wrap" Text="{Binding antalUnge, Mode=TwoWay}" VerticalAlignment="Bottom" Width="194" PlaceholderText="Antal unge?"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Right" Height="40" Margin="0,0,300,65" TextWrapping="Wrap" Text="{Binding antalStoreBørn, Mode=TwoWay}" VerticalAlignment="Bottom" Width="194" PlaceholderText="Antal børn (3+)?"/>
+        <TextBox x:Name="textBox5" Height="40" Margin="423,0,407,10" TextWrapping="Wrap" Text="{Binding antalSmåBørn, Mode=TwoWay}" VerticalAlignment="Bottom" d:LayoutOverrides="LeftPosition, RightPosition" PlaceholderText="Børn (u3)?"/>
         <Button x:Name="button2" Content="Tilmeld" HorizontalAlignment="Right" Height="40" Margin="0,0,70,97" VerticalAlignment="Bottom" Width="154" Command="{Binding TilføjDeltager}">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>

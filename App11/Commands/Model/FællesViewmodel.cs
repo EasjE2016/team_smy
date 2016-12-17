@@ -31,7 +31,10 @@ namespace App11.Model
         public double KuverterOmUgen;
         private Deltagere selectedDeltager;
         StorageFolder localfolder = null;
-        private readonly string filnavn = "JsonText.json";
+        private readonly string filnavnTilmeldingMandag     =   "Mandag.json";
+        private readonly string filnavnTilmeldingTirsdag    =  "Tirsdag.json";
+        private readonly string filnavnTilmeldingOnsdag     =   "Onsdag.json";
+        private readonly string filnavnTilmeldingTorsdag    =  "Torsdag.json";
 
         public ObservableCollection<string> Prislist { get; set; }
 
@@ -45,6 +48,7 @@ namespace App11.Model
         public int _antalVoksne;
         public int _antalSmåBørn;
         public int _antalStoreBørn;
+        
 
         public string _arbejdsOpgave;
         public string _navn;
@@ -252,7 +256,10 @@ namespace App11.Model
             Combobox.Add("Onsdag");
             Combobox.Add("Torsdag");
             localfolder = ApplicationData.Current.LocalFolder;
-            HentdataFraDiskAsync();
+            HentdataFraDiskAsyncMandag();
+            HentdataFraDiskAsyncTirsdag();
+            HentdataFraDiskAsyncOnsdag();
+            HentdataFraDiskAsyncTorsdag();
         }
 
         private void DeleteDeltagerMetode()
@@ -261,18 +268,37 @@ namespace App11.Model
             _tirsdagsliste.Remove(selectedDeltager);
             _onsdagsliste.Remove(selectedDeltager);
             _torsdagsliste.Remove(selectedDeltager);
-
-            GemDataTilDiskAsync(GetJson());
-
-        }
+          
+        
+    }
 
         //Json
-        public string GetJson()
+        public string GetJsonMandag()
         {
             string json = JsonConvert.SerializeObject(_mandagsliste);
             return json;
         }
-        public void IndsætJson(string jsonText)
+
+        public string GetJsonTirsdag()
+        {
+            string json = JsonConvert.SerializeObject(_tirsdagsliste);
+            return json;
+        }
+
+        public string GetJsonOnsdag()
+        {
+            string json = JsonConvert.SerializeObject(_onsdagsliste);
+            return json;
+        }
+
+        public string GetJsonTorsdag()
+        {
+            string json = JsonConvert.SerializeObject(_torsdagsliste);
+            return json;
+        }
+
+
+        public void IndsætJsonMandag(string jsonText)
         {
             DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
             _mandagsliste.Clear();
@@ -280,19 +306,20 @@ namespace App11.Model
             {
                 _mandagsliste.Add(item);
             }
-
         }
 
-
-      // Gem data til Json
+        /*
+        const String FileNameTilmelding = "saveTilmeling.json";
+        public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
+        */
         public async void HentdataFraDiskAsync()
         {
             try
             {
-                StorageFile file = await localfolder.GetFileAsync(filnavn);
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTorsdag);
                 string jsonText = await FileIO.ReadTextAsync(file);
-                IndsætJson(jsonText);
-               
+                IndsætJsonTorsdag(jsonText);
+
             }
             catch (Exception)
             {
@@ -301,9 +328,28 @@ namespace App11.Model
             }
         }
 
-        public async void GemDataTilDiskAsync(string JsonText)
+
+
+        public async void GemDataTilDiskAsyncMandag(string JsonText)
         {
-            StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingMandag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
+
+        public async void GemDataTilDiskAsyncTirsdag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingTirsdag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
+
+        public async void GemDataTilDiskAsyncOnsdag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingOnsdag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
+        public async void GemDataTilDiskAsyncTorsdag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingTorsdag, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, JsonText);
         }
 
@@ -365,7 +411,10 @@ namespace App11.Model
                 MessageDialog showDialog = new MessageDialog("Denne dag eksistere desværre ikke");
             }
 
-            GemDataTilDiskAsync(GetJson());
+            GemDataTilDiskAsyncMandag(GetJsonMandag());
+            GemDataTilDiskAsyncTirsdag(GetJsonTirsdag());
+            GemDataTilDiskAsyncOnsdag(GetJsonOnsdag());
+            GemDataTilDiskAsyncTorsdag(GetJsonTorsdag());
 
         }
         
