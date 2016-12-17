@@ -80,6 +80,7 @@ namespace App11.Model
         public Relaycommand TilføjDeltager { get; set; }
         public Relaycommand TilføjNyArbejdsOpgave { get; set; }
 
+      
 
         public List<string> Combobox { get; set; }
 
@@ -268,9 +269,12 @@ namespace App11.Model
             _tirsdagsliste.Remove(selectedDeltager);
             _onsdagsliste.Remove(selectedDeltager);
             _torsdagsliste.Remove(selectedDeltager);
-          
-        
-    }
+
+            GemDataTilDiskAsyncMandag(GetJsonMandag());
+            GemDataTilDiskAsyncTirsdag(GetJsonTirsdag());
+            GemDataTilDiskAsyncOnsdag(GetJsonOnsdag());
+            GemDataTilDiskAsyncTorsdag(GetJsonTorsdag());
+        }
 
         //Json
         public string GetJsonMandag()
@@ -308,24 +312,72 @@ namespace App11.Model
             }
         }
 
+
+        public void IndsætJsonTirsdag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _tirsdagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _tirsdagsliste.Add(item);
+            }
+        }
+
+
+        public void IndsætJsonOnsdag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _onsdagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _onsdagsliste.Add(item);
+            }
+        }
+
+
+        public void IndsætJsonTorsdag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _torsdagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _torsdagsliste.Add(item);
+            }
+        }
+
         /*
         const String FileNameTilmelding = "saveTilmeling.json";
         public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
         */
-        public async void HentdataFraDiskAsync()
+        public async void HentdataFraDiskAsyncMandag()
         {
-            try
-            {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingMandag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonMandag(jsonText);
+        }
+
+
+        public async void HentdataFraDiskAsyncTirsdag()
+        {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTirsdag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonTirsdag(jsonText);
+        }
+
+
+        public async void HentdataFraDiskAsyncOnsdag()
+        {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingOnsdag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonOnsdag(jsonText);
+        }
+
+
+        public async void HentdataFraDiskAsyncTorsdag()
+        {
                 StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTorsdag);
                 string jsonText = await FileIO.ReadTextAsync(file);
                 IndsætJsonTorsdag(jsonText);
-
-            }
-            catch (Exception)
-            {
-                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
-                await messageDialog.ShowAsync();
-            }
         }
 
 

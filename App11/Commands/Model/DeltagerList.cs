@@ -16,6 +16,11 @@ namespace App11.Model
      
         
         }
+
+        internal object GetJson()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
