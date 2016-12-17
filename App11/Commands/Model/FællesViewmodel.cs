@@ -33,7 +33,6 @@ namespace App11.Model
         StorageFolder localfolder = null;
         private readonly string filnavn = "JsonText.json";
 
-
         public ObservableCollection<string> Prislist { get; set; }
 
         public double _prisIalt;
@@ -141,7 +140,7 @@ namespace App11.Model
                 OnPropertyChanged(nameof(antalStoreBørn));
             }
         }
-        public Relaycommand DeleteDeltager { get;/* private set;*/ }
+        public Relaycommand DeleteDeltager { get; }
         public double gangeForStoreBørn { get; set; }
         public int antalVoksne
         {
@@ -262,9 +261,10 @@ namespace App11.Model
             _tirsdagsliste.Remove(selectedDeltager);
             _onsdagsliste.Remove(selectedDeltager);
             _torsdagsliste.Remove(selectedDeltager);
-          
-        
-    }
+
+            GemDataTilDiskAsync(GetJson());
+
+        }
 
         //Json
         public string GetJson()
@@ -280,12 +280,11 @@ namespace App11.Model
             {
                 _mandagsliste.Add(item);
             }
+
         }
 
-        /*
-        const String FileNameTilmelding = "saveTilmeling.json";
-        public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
-        */
+
+      // Gem data til Json
         public async void HentdataFraDiskAsync()
         {
             try
