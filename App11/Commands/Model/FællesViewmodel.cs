@@ -30,6 +30,11 @@ namespace App11.Model
         public double KuverterOnsdag;
         public double KuverterOmUgen;
         private Deltagere selectedDeltager;
+        StorageFolder localfolder = null;
+        private readonly string filnavnTilmeldingMandag     =   "Mandag.json";
+        private readonly string filnavnTilmeldingTirsdag    =  "Tirsdag.json";
+        private readonly string filnavnTilmeldingOnsdag     =   "Onsdag.json";
+        private readonly string filnavnTilmeldingTorsdag    =  "Torsdag.json";
 
         public ObservableCollection<string> Prislist { get; set; }
 
@@ -43,15 +48,16 @@ namespace App11.Model
         public int _antalVoksne;
         public int _antalSmåBørn;
         public int _antalStoreBørn;
+        
 
         public string _arbejdsOpgave;
         public string _navn;
         public string _dag;
-
-        public DeltagerList Mandagsliste { get { return _mandagsliste; } }
-        public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
-        public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
-        public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
+       
+        public DeltagerList Mandagsliste    { get { return _mandagsliste; } }
+        public DeltagerList Tirsdagsliste   { get { return _tirsdagsliste; } }
+        public DeltagerList Onsdagsliste     { get { return _onsdagsliste; } }
+        public DeltagerList Torsdagsliste   { get { return _torsdagsliste; } }
 
         public ArbejdsOpgaveListe ArbejdsListe { get { return _arbejdsListe; } }
 
@@ -86,8 +92,6 @@ namespace App11.Model
                 OnPropertyChanged(nameof(SelectedDeltager));
             }
         }
-
-        
 
         public int husNr
         {
@@ -126,7 +130,7 @@ namespace App11.Model
                 OnPropertyChanged(nameof(antalSmåBørn));
             }
         }
-
+   
 
         public int antalStoreBørn
         {
@@ -229,18 +233,18 @@ namespace App11.Model
             }
         }
 
-        
-        private Dictionary<int, Double> Prisdict;
+
+       private Dictionary<int, Double> Prisdict;
 
         public FællesViewmodel()
         {
-            
+
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
-            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+        TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
-            DeleteDeltager = new Relaycommand(DeleteDeltagerMetode, null);
+         TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+           DeleteDeltager  = new Relaycommand(DeleteDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
             _tirsdagsliste = new DeltagerList();
             _onsdagsliste = new DeltagerList();
@@ -251,12 +255,12 @@ namespace App11.Model
             Combobox.Add("Tirsdag");
             Combobox.Add("Onsdag");
             Combobox.Add("Torsdag");
-            
+            localfolder = ApplicationData.Current.LocalFolder;
+            HentdataFraDiskAsyncMandag();
+            HentdataFraDiskAsyncTirsdag();
+            HentdataFraDiskAsyncOnsdag();
+            HentdataFraDiskAsyncTorsdag();
         }
-
-        
-
-   
 
         private void DeleteDeltagerMetode()
         {
@@ -264,19 +268,166 @@ namespace App11.Model
             _tirsdagsliste.Remove(selectedDeltager);
             _onsdagsliste.Remove(selectedDeltager);
             _torsdagsliste.Remove(selectedDeltager);
-          
-        
-    }
+
+            GemDataTilDiskAsyncMandag(GetJsonMandag());
+            GemDataTilDiskAsyncTirsdag(GetJsonTirsdag());
+            GemDataTilDiskAsyncOnsdag(GetJsonOnsdag());
+            GemDataTilDiskAsyncTorsdag(GetJsonTorsdag());
+
+        }
 
         //Json
-        public string GetJson()
+        public string GetJsonMandag()
         {
-            string json = JsonConvert.SerializeObject(this);
+            string json = JsonConvert.SerializeObject(_mandagsliste);
             return json;
         }
-        public void IndsætJson(string jsonText)
+
+        public string GetJsonTirsdag()
         {
-            List<Deltagere> nyListe = JsonConvert.DeserializeObject<List<Deltagere>>(jsonText);
+            string json = JsonConvert.SerializeObject(_tirsdagsliste);
+            return json;
+        }
+
+        public string GetJsonOnsdag()
+        {
+            string json = JsonConvert.SerializeObject(_onsdagsliste);
+            return json;
+        }
+
+        public string GetJsonTorsdag()
+        {
+            string json = JsonConvert.SerializeObject(_torsdagsliste);
+            return json;
+        }
+
+
+        public void IndsætJsonMandag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _mandagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _mandagsliste.Add(item);
+            }
+
+        }
+        
+        public void IndsætJsonTirsdag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _tirsdagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _tirsdagsliste.Add(item);
+            }
+        }
+
+        public void IndsætJsonOnsdag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _onsdagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _onsdagsliste.Add(item);
+            }
+        }
+
+        public void IndsætJsonTorsdag(string jsonText)
+        {
+            DeltagerList nyListe = JsonConvert.DeserializeObject<DeltagerList>(jsonText);
+            _torsdagsliste.Clear();
+            foreach (var item in nyListe)
+            {
+                _torsdagsliste.Add(item);
+            }
+        }
+
+        public async void HentdataFraDiskAsyncMandag()
+        {
+            try
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingMandag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonMandag(jsonText);
+               
+            }
+            catch (Exception)
+            {
+                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
+                await messageDialog.ShowAsync();
+            }
+        }
+        public async void HentdataFraDiskAsyncTirsdag()
+        {
+            try
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTirsdag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonTirsdag(jsonText);
+
+            }
+            catch (Exception)
+            {
+                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
+                await messageDialog.ShowAsync();
+            }
+        }
+
+        public async void HentdataFraDiskAsyncOnsdag()
+        {
+            try
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingOnsdag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonOnsdag(jsonText);
+
+            }
+            catch (Exception)
+            {
+                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
+                await messageDialog.ShowAsync();
+            }
+        }
+        public async void HentdataFraDiskAsyncTorsdag()
+        {
+            try
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTorsdag);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonTorsdag(jsonText);
+
+            }
+            catch (Exception)
+            {
+                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
+                await messageDialog.ShowAsync();
+            }
+        }
+
+
+
+        public async void GemDataTilDiskAsyncMandag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingMandag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
+
+        public async void GemDataTilDiskAsyncTirsdag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingTirsdag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
+
+        public async void GemDataTilDiskAsyncOnsdag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingOnsdag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
+        public async void GemDataTilDiskAsyncTorsdag(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingTorsdag, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
         }
 
 
@@ -336,6 +487,12 @@ namespace App11.Model
             {
                 MessageDialog showDialog = new MessageDialog("Denne dag eksistere desværre ikke");
             }
+
+            GemDataTilDiskAsyncMandag(GetJsonMandag());
+            GemDataTilDiskAsyncTirsdag(GetJsonTirsdag());
+            GemDataTilDiskAsyncOnsdag(GetJsonOnsdag());
+            GemDataTilDiskAsyncTorsdag(GetJsonTorsdag());
+
         }
         
         private void TilføjMetode()
