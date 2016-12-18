@@ -13,9 +13,14 @@ namespace App11.Model
         public ArbejdsOpgaveListe()
 
         {
-           // 
+         
 
         }
-        
+
+        internal object GetJson()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

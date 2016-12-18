@@ -31,10 +31,11 @@ namespace App11.Model
         public double KuverterOmUgen;
         private Deltagere selectedDeltager;
         StorageFolder localfolder = null;
-        private readonly string filnavnTilmeldingMandag     =   "Mandag.json";
-        private readonly string filnavnTilmeldingTirsdag    =  "Tirsdag.json";
-        private readonly string filnavnTilmeldingOnsdag     =   "Onsdag.json";
-        private readonly string filnavnTilmeldingTorsdag    =  "Torsdag.json";
+        private readonly string filnavnTilmeldingMandag     = "Mandag.json";
+        private readonly string filnavnTilmeldingTirsdag    = "Tirsdag.json";
+        private readonly string filnavnTilmeldingOnsdag     = "Onsdag.json";
+        private readonly string filnavnTilmeldingTorsdag    = "Torsdag.json";
+        private readonly string filnavnArbejdsopgaver       = "Arbejdsopgaver.json";
 
         public ObservableCollection<string> Prislist { get; set; }
 
@@ -58,7 +59,6 @@ namespace App11.Model
         public DeltagerList Tirsdagsliste   { get { return _tirsdagsliste; } }
         public DeltagerList Onsdagsliste     { get { return _onsdagsliste; } }
         public DeltagerList Torsdagsliste   { get { return _torsdagsliste; } }
-
         public ArbejdsOpgaveListe ArbejdsListe { get { return _arbejdsListe; } }
 
 
@@ -261,6 +261,7 @@ namespace App11.Model
             HentdataFraDiskAsyncTirsdag();
             HentdataFraDiskAsyncOnsdag();
             HentdataFraDiskAsyncTorsdag();
+            HentdataFraDiskAsyncArbejdsopgaver();
         }
 
         private void DeleteDeltagerMetode()
@@ -298,6 +299,12 @@ namespace App11.Model
         public string GetJsonTorsdag()
         {
             string json = JsonConvert.SerializeObject(_torsdagsliste);
+            return json;
+        }
+
+        public string GetJsonArbejdsopgaver()
+        {
+            string json = JsonConvert.SerializeObject(_arbejdsListe);
             return json;
         }
 
@@ -345,6 +352,17 @@ namespace App11.Model
             }
         }
 
+
+        public void IndsætJsonArbejdsopgaver(string jsonText)
+        {
+            ArbejdsOpgaveListe nyliste = JsonConvert.DeserializeObject<ArbejdsOpgaveListe>(jsonText);
+            _arbejdsListe.Clear();
+            foreach (var item in nyliste)
+            {
+                _arbejdsListe.Add(item);
+            }
+        }
+
         /*
         const String FileNameTilmelding = "saveTilmeling.json";
         public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
@@ -381,6 +399,13 @@ namespace App11.Model
         }
 
 
+        public async void HentdataFraDiskAsyncArbejdsopgaver()
+        {
+            StorageFile file = await localfolder.GetFileAsync(filnavnArbejdsopgaver);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            IndsætJsonArbejdsopgaver(jsonText);
+        }
+
 
         public async void GemDataTilDiskAsyncMandag(string JsonText)
         {
@@ -399,12 +424,18 @@ namespace App11.Model
             StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingOnsdag, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, JsonText);
         }
+
         public async void GemDataTilDiskAsyncTorsdag(string JsonText)
         {
             StorageFile file = await localfolder.CreateFileAsync(filnavnTilmeldingTorsdag, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, JsonText);
         }
 
+        public async void GemDataTilDiskAsyncArbejdsopgaver(string JsonText)
+        {
+            StorageFile file = await localfolder.CreateFileAsync(filnavnArbejdsopgaver, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, JsonText);
+        }
 
 
         public void TilføjDeltagerMetode()
@@ -480,9 +511,9 @@ namespace App11.Model
             Navn = Navn
         
             });
-          
 
-           
+            GemDataTilDiskAsyncArbejdsopgaver(GetJsonArbejdsopgaver());
+
         }
 
         private void BeregnKurverter()
