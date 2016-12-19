@@ -20,6 +20,7 @@ namespace App11.Model
         public double gangeForVoksne { get; set; }
         public double PrisPrHus{ get; set; }
         public double PrisPrFamilie { get; set; }
+        public double GangMedDette { get; set; }
         public string Dag { get; set; }
         public Deltagere()
 

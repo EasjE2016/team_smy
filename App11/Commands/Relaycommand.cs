@@ -59,6 +59,7 @@ namespace App11.Commands
             this.methodToExecute();
         }
 
-          }
+
+    }
     }
 
