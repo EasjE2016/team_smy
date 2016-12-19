@@ -38,7 +38,7 @@ namespace App11.Model
         private readonly string filnavnArbejdsopgaver       = "Arbejdsopgaver.json";
 
         public ObservableCollection<string> Prislist { get; set; }
-
+        
         public double _prisIalt;
         public string _dagensRetMandag;
         public string _dagensRetTirsdag;

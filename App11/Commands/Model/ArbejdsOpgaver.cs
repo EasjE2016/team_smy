@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace App11.Model
 {
-    public class ArbejdsOpgaver
+    public sealed class ArbejdsOpgaver
     {
         public string Navn { get; set; }
         public string Dag { get; set; }
