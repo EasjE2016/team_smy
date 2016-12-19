@@ -35,7 +35,8 @@ namespace App11.Model
         private readonly string filnavnTilmeldingTirsdag    = "Tirsdag.json";
         private readonly string filnavnTilmeldingOnsdag     = "Onsdag.json";
         private readonly string filnavnTilmeldingTorsdag    = "Torsdag.json";
-        private readonly string filnavnArbejdsopgaver       = "Arbejdsopgaver.json";
+        private readonly string filnavnarbejdsopgaver = "Arbejdsopgaver.json";
+        
 
         public ObservableCollection<string> Prislist { get; set; }
 
@@ -262,6 +263,7 @@ namespace App11.Model
             HentdataFraDiskAsyncOnsdag();
             HentdataFraDiskAsyncTorsdag();
             HentdataFraDiskAsyncArbejdsopgaver();
+            
         }
 
         private void DeleteDeltagerMetode()
@@ -302,7 +304,7 @@ namespace App11.Model
             return json;
         }
 
-        public string GetJsonArbejdsopgaver()
+      public string GetJsonArbejdsopgaver()
         {
             string json = JsonConvert.SerializeObject(_arbejdsListe);
             return json;
@@ -353,11 +355,11 @@ namespace App11.Model
         }
 
 
-        public void IndsætJsonArbejdsopgaver(string jsonText)
+      public void IndsætJsonArbejdsopgaver(string jsonText)
         {
-            ArbejdsOpgaveListe nyliste = JsonConvert.DeserializeObject<ArbejdsOpgaveListe>(jsonText);
+            ArbejdsOpgaveListe nyListe = JsonConvert.DeserializeObject<ArbejdsOpgaveListe>(jsonText);
             _arbejdsListe.Clear();
-            foreach (var item in nyliste)
+            foreach (var item in nyListe)
             {
                 _arbejdsListe.Add(item);
             }
@@ -398,13 +400,15 @@ namespace App11.Model
                 IndsætJsonTorsdag(jsonText);
         }
 
-
         public async void HentdataFraDiskAsyncArbejdsopgaver()
         {
-            StorageFile file = await localfolder.GetFileAsync(filnavnArbejdsopgaver);
+            StorageFile file = await localfolder.GetFileAsync(filnavnarbejdsopgaver);
             string jsonText = await FileIO.ReadTextAsync(file);
             IndsætJsonArbejdsopgaver(jsonText);
         }
+
+
+
 
 
         public async void GemDataTilDiskAsyncMandag(string JsonText)
@@ -431,12 +435,13 @@ namespace App11.Model
             await FileIO.WriteTextAsync(file, JsonText);
         }
 
-        public async void GemDataTilDiskAsyncArbejdsopgaver(string JsonText)
+        public async void GemDataTilDiskAsyncArbejdsopgaver(string jsonText)
         {
-            StorageFile file = await localfolder.CreateFileAsync(filnavnArbejdsopgaver, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, JsonText);
+            StorageFile file = await localfolder.CreateFileAsync(filnavnarbejdsopgaver, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, jsonText);
         }
 
+      
 
         public void TilføjDeltagerMetode()
         {
@@ -509,10 +514,12 @@ namespace App11.Model
                 ArbejdsOpgave = ArbejdsOpgave,
         Dag = Dag,
             Navn = Navn
+
+
         
             });
-
             GemDataTilDiskAsyncArbejdsopgaver(GetJsonArbejdsopgaver());
+
 
         }
 
