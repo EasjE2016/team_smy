@@ -21,6 +21,7 @@ namespace App11.Model
         public double PrisPrHus{ get; set; }
         public double PrisPrFamilie { get; set; }
         public string Dag { get; set; }
+        public double GangMedDette { get; set; }
         public Deltagere()
 
         {
