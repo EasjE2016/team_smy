@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
+
 namespace App11.Model
 {
     public class FællesViewmodel : INotifyPropertyChanged
@@ -560,10 +561,6 @@ namespace App11.Model
 
         }
 
-    
-           
-            
-        
             
 
         public void VisResultat()
@@ -586,14 +583,14 @@ namespace App11.Model
                 foreach (Deltagere deltager in Mandagsliste)
                 {
                     deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-                   deltager.antalUnge * deltager.gangeForUnge +
-                   deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
                     if (!Prisdict.ContainsKey(deltager.husNr))
 
                     {
 
-                        deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
+                        deltager.GangMedDette = deltager.GangMedDette;// + deltager.GangMedDette;
                         Prisdict.Add(deltager.husNr, deltager.GangMedDette);
 
                     }
@@ -602,7 +599,8 @@ namespace App11.Model
                     {
 
                         Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
-                    } }
+                    }
+                }
 
             }
 
@@ -611,12 +609,12 @@ namespace App11.Model
             {
 
                 deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
                 if (!Prisdict.ContainsKey(deltager.husNr))
                 {
-                    deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
+                    deltager.GangMedDette = deltager.GangMedDette; //+ deltager.GangMedDette;
                     Prisdict.Add(deltager.husNr, deltager.GangMedDette);
                 }
 
@@ -633,13 +631,13 @@ namespace App11.Model
 
 
                 deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
                 if (!Prisdict.ContainsKey(deltager.husNr))
                 {
 
-                    deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
+                    deltager.GangMedDette = deltager.GangMedDette; //+ deltager.GangMedDette;
                     Prisdict.Add(deltager.husNr, deltager.GangMedDette);
                 }
 
@@ -653,14 +651,13 @@ namespace App11.Model
             foreach (Deltagere deltager in Torsdagsliste)
 
             {
-
                 deltager.GangMedDette = (deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn);
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn);
 
                 if (!Prisdict.ContainsKey(deltager.husNr))
                 {
-                    deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
+                    deltager.GangMedDette = deltager.GangMedDette; //+ deltager.GangMedDette;
                     Prisdict.Add(deltager.husNr, deltager.GangMedDette);
                 }
 
@@ -682,8 +679,6 @@ namespace App11.Model
 
             VisResultat();
             
-
-
             }
         protected virtual void OnPropertyChanged(string propertyname)
         {
