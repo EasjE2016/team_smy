@@ -268,7 +268,7 @@ namespace App11.Model
             HentdataFraDiskAsyncOnsdag();
             HentdataFraDiskAsyncTorsdag();
 
-            //  HentdataFraDiskAsyncArbejdsopgaver();
+           HentdataFraDiskAsyncArbejdsopgaver();
         }
 
         private void DeleteDeltagerMetode()
@@ -370,10 +370,10 @@ namespace App11.Model
             }
         }
 
-        /*
+        
         const String FileNameTilmelding = "saveTilmeling.json";
         public ObservableCollection<Deltagere> Tilmeldsliste { get; set; }
-        */
+        
         public async void HentdataFraDiskAsyncMandag()
         {
             StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingMandag);
@@ -406,12 +406,12 @@ namespace App11.Model
         }
 
 
-        /*    public async void HentdataFraDiskAsyncArbejdsopgaver()
+          public async void HentdataFraDiskAsyncArbejdsopgaver()
             {
                 StorageFile file = await localfolder.GetFileAsync(filnavnArbejdsopgaver);
                 string jsonText = await FileIO.ReadTextAsync(file);
                 IndsætJsonArbejdsopgaver(jsonText);
-            }*/
+            }
 
 
         public async void GemDataTilDiskAsyncMandag(string JsonText)

@@ -7,7 +7,6 @@
     xmlns:Model="using:App11.Model"
     x:Class="App11.MainPage"
     mc:Ignorable="d" Foreground="White">
-
     <Page.DataContext>
         <Model:FællesViewmodel/>
     </Page.DataContext>
@@ -17,6 +16,7 @@
         <Grid.DataContext>
             <Model:FællesViewmodel/>
         </Grid.DataContext>
+
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="baggrund1.png"/>
         </Grid.Background>
@@ -24,9 +24,9 @@
             <GridView.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Listview.png"/>
             </GridView.Background>
-         
-                      
-                     
+
+
+
         </GridView>
         <GridView x:Name="gridView_Copy" Margin="0,84,530,222" HorizontalAlignment="Right" Width="195" Header="Tirsdag" ItemsSource="{Binding Tirsdagsliste}" SelectedItem="{Binding SelectedDeltager, Mode=TwoWay}" SelectionChanged="gridView_Copy_SelectionChanged">
             <GridView.Background>
@@ -44,10 +44,10 @@
             </GridView.Background>
 
         </GridView>
-        <TextBlock x:Name="textBlock1" Height="17" Margin="76,63,0,0" TextWrapping="Wrap" Text="Dagens ret" VerticalAlignment="Top" HorizontalAlignment="Left" Width="183" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <TextBlock x:Name="textBlock1_Copy" Height="17" Margin="0,64,300,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <TextBlock x:Name="textBlock1_Copy1" Height="17" Margin="0,63,530,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
-        <TextBlock x:Name="textBlock1_Copy2" Height="17" Margin="0,63,70,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="194" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1" Height="17" Margin="76,59,0,0" TextWrapping="Wrap" Text="Dagens ret" VerticalAlignment="Top" HorizontalAlignment="Left" Width="86" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy" Height="17" Margin="0,60,411,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="83" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy1" Height="17" Margin="0,57,630,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="94" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock x:Name="textBlock1_Copy2" Height="17" Margin="0,59,180,0" TextWrapping="Wrap" Text="Dagens ret:" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84" SelectionHighlightColor="Black" FontWeight="Bold" Foreground="Black"/>
         <Button x:Name="button" Content="Beregn" HorizontalAlignment="Right" Height="30" Margin="0,0,0,610" VerticalAlignment="Bottom" Width="514" Click="button_Click"/>
         <Button x:Name="button1" Content="Mad " Height="30" Margin="0,0,0,610" VerticalAlignment="Bottom" Width="510" HorizontalAlignment="Left" Click="button1_Click"/>
         <TextBox x:Name="textBox1" Margin="299,0,0,110" TextWrapping="Wrap" Text="{Binding husNr, Mode=TwoWay}" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Left" Width="195" PlaceholderText="Hus nr?" TextChanged="textBox1_TextChanged"/>
@@ -66,6 +66,10 @@
             </Button.Background>
         </Button>
         <ComboBox x:Name="comboBox" ItemsSource="{Binding Combobox}" SelectedItem="{Binding Dag, Mode=TwoWay}" HorizontalAlignment="Stretch" Height="40" Margin="428,0,374,167" VerticalAlignment="Bottom" PlaceholderText="Hvilken dag vil du deltage?" SelectionChanged="comboBox_SelectionChanged" />
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="7" Margin="394,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" TextChanged="textBox_TextChanged_1" PlaceholderText="Skriv ret her"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="7" Margin="162,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="109" TextChanged="textBox_Copy_TextChanged" PlaceholderText="Skriv ret her"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="7" Margin="618,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="106" TextChanged="textBox_Copy1_TextChanged" PlaceholderText="Skriv ret her"/>
+        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="7" Margin="844,48,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110" TextChanged="textBox_Copy2_TextChanged" PlaceholderText="Skriv ret her"/>
 
     </Grid>
 </Page>
