@@ -616,7 +616,6 @@ namespace App11.Model
             { 
                 Prislist.Add($"Hus Nr {liste.Key} skal betale {liste.Value}");
             }
-
            
         }
 
