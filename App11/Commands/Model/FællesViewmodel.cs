@@ -29,17 +29,18 @@ namespace App11.Model
         public double KuverterTorsdag;
         public double KuverterOnsdag;
         public double KuverterOmUgen;
+        public double DicValue;
         public double PrisPrFamilie;
         private Deltagere selectedDeltager;
         StorageFolder localfolder = null;
-        private readonly string filnavnTilmeldingMandag     = "Mandag.json";
-        private readonly string filnavnTilmeldingTirsdag    = "Tirsdag.json";
-        private readonly string filnavnTilmeldingOnsdag     = "Onsdag.json";
-        private readonly string filnavnTilmeldingTorsdag    = "Torsdag.json";
-        private readonly string filnavnArbejdsopgaver       = "Arbejdsopgaver.json";
+        private readonly string filnavnTilmeldingMandag = "Mandag.json";
+        private readonly string filnavnTilmeldingTirsdag = "Tirsdag.json";
+        private readonly string filnavnTilmeldingOnsdag = "Onsdag.json";
+        private readonly string filnavnTilmeldingTorsdag = "Torsdag.json";
+        private readonly string filnavnArbejdsopgaver = "Arbejdsopgaver.json";
 
         public ObservableCollection<string> Prislist { get; set; }
-        
+
         public double _prisIalt;
         public string _dagensRetMandag;
         public string _dagensRetTirsdag;
@@ -50,16 +51,16 @@ namespace App11.Model
         public int _antalVoksne;
         public int _antalSmåBørn;
         public int _antalStoreBørn;
-        
+
 
         public string _arbejdsOpgave;
         public string _navn;
         public string _dag;
-       
-        public DeltagerList Mandagsliste    { get { return _mandagsliste; } }
-        public DeltagerList Tirsdagsliste   { get { return _tirsdagsliste; } }
-        public DeltagerList Onsdagsliste     { get { return _onsdagsliste; } }
-        public DeltagerList Torsdagsliste   { get { return _torsdagsliste; } }
+
+        public DeltagerList Mandagsliste { get { return _mandagsliste; } }
+        public DeltagerList Tirsdagsliste { get { return _tirsdagsliste; } }
+        public DeltagerList Onsdagsliste { get { return _onsdagsliste; } }
+        public DeltagerList Torsdagsliste { get { return _torsdagsliste; } }
         public ArbejdsOpgaveListe ArbejdsListe { get { return _arbejdsListe; } }
 
 
@@ -81,7 +82,7 @@ namespace App11.Model
         public Relaycommand TilføjDeltager { get; set; }
         public Relaycommand TilføjNyArbejdsOpgave { get; set; }
 
-      
+
 
         public List<string> Combobox { get; set; }
 
@@ -132,7 +133,7 @@ namespace App11.Model
                 OnPropertyChanged(nameof(antalSmåBørn));
             }
         }
-   
+
 
         public int antalStoreBørn
         {
@@ -236,19 +237,21 @@ namespace App11.Model
         }
 
 
-       private Dictionary<int, Double> Prisdict;
+        private Dictionary<int, Double> Prisdict;
         private Dictionary<int, double> Prisdict2;
 
         public FællesViewmodel()
         {
+           Deltagere Deltager = new Deltagere();
+
             Prisdict2 = new Dictionary<int, double>();
             Prisdict = new Dictionary<int, double>();
             TilføjNyArbejdsOpgave = new Relaycommand(TilføjMetode, null);
             Prislist = new ObservableCollection<string>();
-        TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
             BeregnNu = new Relaycommand(BeregnNuMetode, null);
-         TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
-           DeleteDeltager  = new Relaycommand(DeleteDeltagerMetode, null);
+            TilføjDeltager = new Relaycommand(TilføjDeltagerMetode, null);
+            DeleteDeltager = new Relaycommand(DeleteDeltagerMetode, null);
             _mandagsliste = new DeltagerList();
             _tirsdagsliste = new DeltagerList();
             _onsdagsliste = new DeltagerList();
@@ -264,7 +267,8 @@ namespace App11.Model
             HentdataFraDiskAsyncTirsdag();
             HentdataFraDiskAsyncOnsdag();
             HentdataFraDiskAsyncTorsdag();
-          //  HentdataFraDiskAsyncArbejdsopgaver();
+
+            //  HentdataFraDiskAsyncArbejdsopgaver();
         }
 
         private void DeleteDeltagerMetode()
@@ -372,42 +376,42 @@ namespace App11.Model
         */
         public async void HentdataFraDiskAsyncMandag()
         {
-                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingMandag);
-                string jsonText = await FileIO.ReadTextAsync(file);
-                IndsætJsonMandag(jsonText);
+            StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingMandag);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            IndsætJsonMandag(jsonText);
         }
 
 
         public async void HentdataFraDiskAsyncTirsdag()
         {
-                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTirsdag);
-                string jsonText = await FileIO.ReadTextAsync(file);
-                IndsætJsonTirsdag(jsonText);
+            StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTirsdag);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            IndsætJsonTirsdag(jsonText);
         }
 
 
         public async void HentdataFraDiskAsyncOnsdag()
         {
-                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingOnsdag);
-                string jsonText = await FileIO.ReadTextAsync(file);
-                IndsætJsonOnsdag(jsonText);
+            StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingOnsdag);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            IndsætJsonOnsdag(jsonText);
         }
 
 
         public async void HentdataFraDiskAsyncTorsdag()
         {
-                StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTorsdag);
-                string jsonText = await FileIO.ReadTextAsync(file);
-                IndsætJsonTorsdag(jsonText);
+            StorageFile file = await localfolder.GetFileAsync(filnavnTilmeldingTorsdag);
+            string jsonText = await FileIO.ReadTextAsync(file);
+            IndsætJsonTorsdag(jsonText);
         }
 
 
-    /*    public async void HentdataFraDiskAsyncArbejdsopgaver()
-        {
-            StorageFile file = await localfolder.GetFileAsync(filnavnArbejdsopgaver);
-            string jsonText = await FileIO.ReadTextAsync(file);
-            IndsætJsonArbejdsopgaver(jsonText);
-        }*/
+        /*    public async void HentdataFraDiskAsyncArbejdsopgaver()
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavnArbejdsopgaver);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                IndsætJsonArbejdsopgaver(jsonText);
+            }*/
 
 
         public async void GemDataTilDiskAsyncMandag(string JsonText)
@@ -480,7 +484,7 @@ namespace App11.Model
                 });
             }
 
-        if (Dag == this.Combobox [3])
+            if (Dag == this.Combobox[3])
             {
                 _torsdagsliste.Add(new Deltagere()
                 {
@@ -491,7 +495,7 @@ namespace App11.Model
                     antalSmåBørn = antalSmåBørn
                 });
             }
-      
+
             else
             {
                 MessageDialog showDialog = new MessageDialog("Denne dag eksistere desværre ikke");
@@ -503,16 +507,16 @@ namespace App11.Model
             GemDataTilDiskAsyncTorsdag(GetJsonTorsdag());
 
         }
-        
+
         private void TilføjMetode()
         {
 
             _arbejdsListe.Add(new ArbejdsOpgaver()
             {
                 ArbejdsOpgave = ArbejdsOpgave,
-        Dag = Dag,
-            Navn = Navn
-        
+                Dag = Dag,
+                Navn = Navn
+
             });
 
             GemDataTilDiskAsyncArbejdsopgaver(GetJsonArbejdsopgaver());
@@ -525,7 +529,7 @@ namespace App11.Model
 
             foreach (Deltagere deltager in Mandagsliste)
             {
-                KuverterMandag = KuverterMandag + (deltager.antalVoksne * deltager.gangeForVoksne + 
+                KuverterMandag = KuverterMandag + (deltager.antalVoksne * deltager.gangeForVoksne +
                     deltager.antalUnge * deltager.gangeForUnge +
                     deltager.antalStoreBørn * deltager.gangeForStoreBørn);
 
@@ -540,12 +544,12 @@ namespace App11.Model
             }
 
 
-                foreach (Deltagere deltager in Onsdagsliste)
+            foreach (Deltagere deltager in Onsdagsliste)
             {
-             KuverterOnsdag = KuverterOnsdag + (deltager.antalVoksne * deltager.gangeForVoksne +
-                    deltager.antalUnge * deltager.gangeForUnge +
-                    deltager.antalStoreBørn * deltager.gangeForStoreBørn);
-                }
+                KuverterOnsdag = KuverterOnsdag + (deltager.antalVoksne * deltager.gangeForVoksne +
+                       deltager.antalUnge * deltager.gangeForUnge +
+                       deltager.antalStoreBørn * deltager.gangeForStoreBørn);
+            }
 
 
             foreach (Deltagere deltager in Torsdagsliste)
@@ -556,135 +560,125 @@ namespace App11.Model
             }
 
 
-            KuverterOmUgen = KuverterMandag + KuverterTirsdag + KuverterOnsdag + KuverterTorsdag; 
+            KuverterOmUgen = KuverterMandag + KuverterTirsdag + KuverterOnsdag + KuverterTorsdag;
 
         }
 
-    
-           
-            
-        
-            
+
+
+
+
+
 
         public void VisResultat()
         {
-            
+
 
             foreach (var liste in Prisdict2)
-            { 
+            {
                 Prislist.Add($"Hus Nr {liste.Key} skal betale {liste.Value}");
             }
-           
+
         }
 
 
 
         private void BeregnNuMetode()
         {
-            BeregnKurverter();
             {
+                  BeregnKurverter();
                 foreach (Deltagere deltager in Mandagsliste)
                 {
-                    deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-                   deltager.antalUnge * deltager.gangeForUnge +
-                   deltager.antalStoreBørn * deltager.gangeForStoreBørn));
-
                     if (!Prisdict.ContainsKey(deltager.husNr))
 
                     {
-
-                        deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
-                        Prisdict.Add(deltager.husNr, deltager.GangMedDette);
-
+                        Prisdict.Add(deltager.husNr, deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                     }
 
                     else
                     {
-
-                        Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
-                    } }
+                        Prisdict[deltager.husNr] = Prisdict[deltager.husNr] + (deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+                    }
+                }
 
             }
 
             foreach (Deltagere deltager in Tirsdagsliste)
-
             {
-
-                deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
-
                 if (!Prisdict.ContainsKey(deltager.husNr))
+
                 {
-                    deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
-                    Prisdict.Add(deltager.husNr, deltager.GangMedDette);
+                    Prisdict.Add(deltager.husNr, deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                 }
 
                 else
                 {
-                    Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
+                    Prisdict[deltager.husNr] = Prisdict[deltager.husNr] + (deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                 }
+
             }
+
+
 
 
             foreach (Deltagere deltager in Onsdagsliste)
 
             {
-
-
-                deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
-
                 if (!Prisdict.ContainsKey(deltager.husNr))
-                {
 
-                    deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
-                    Prisdict.Add(deltager.husNr, deltager.GangMedDette);
+                {
+                    Prisdict.Add(deltager.husNr, deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                 }
 
                 else
                 {
-
-                    Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
+                    Prisdict[deltager.husNr] = Prisdict[deltager.husNr] + (deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                 }
             }
 
             foreach (Deltagere deltager in Torsdagsliste)
-
             {
-
-                deltager.GangMedDette = (deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn);
-
                 if (!Prisdict.ContainsKey(deltager.husNr))
+
                 {
-                    deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette;
-                    Prisdict.Add(deltager.husNr, deltager.GangMedDette);
+                    Prisdict.Add(deltager.husNr, deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                 }
 
                 else
                 {
-                    Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
+                    Prisdict[deltager.husNr] = Prisdict[deltager.husNr] + (deltager.DetteValue = (deltager.antalVoksne * deltager.gangeForVoksne +
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
                 }
             }
-
+            BeregnKurverter();
             foreach (var pris in Prisdict)
             {
-                PrisPrFamilie = (_prisIalt / KuverterOmUgen) * pris.Value;
-                if (!Prisdict2.ContainsKey(pris.Key))
-                {
-                    Prisdict2.Add(pris.Key, PrisPrFamilie);
-                }
-            }
+                PrisPrFamilie = (IaltPris/(KuverterMandag + KuverterTirsdag + KuverterOnsdag+KuverterTorsdag) * pris.Value)*2;
 
+                Prisdict2.Add(pris.Key, PrisPrFamilie);
+            }
 
             VisResultat();
-            
 
 
-            }
+
+
+        } 
         protected virtual void OnPropertyChanged(string propertyname)
         {
             if (PropertyChanged != null)
