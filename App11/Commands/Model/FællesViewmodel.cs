@@ -263,7 +263,7 @@ namespace App11.Model
             HentdataFraDiskAsyncTirsdag();
             HentdataFraDiskAsyncOnsdag();
             HentdataFraDiskAsyncTorsdag();
-          //  HentdataFraDiskAsyncArbejdsopgaver();
+            HentdataFraDiskAsyncArbejdsopgaver();
         }
 
         private void DeleteDeltagerMetode()
@@ -401,12 +401,12 @@ namespace App11.Model
         }
 
 
-    /*    public async void HentdataFraDiskAsyncArbejdsopgaver()
+        public async void HentdataFraDiskAsyncArbejdsopgaver()
         {
             StorageFile file = await localfolder.GetFileAsync(filnavnArbejdsopgaver);
             string jsonText = await FileIO.ReadTextAsync(file);
             IndsætJsonArbejdsopgaver(jsonText);
-        }*/
+        }
 
 
         public async void GemDataTilDiskAsyncMandag(string JsonText)
@@ -598,28 +598,17 @@ namespace App11.Model
                                       ((deltager.antalVoksne * deltager.gangeForVoksne +
                     deltager.antalUnge * deltager.gangeForUnge +
                     deltager.antalStoreBørn * deltager.gangeForStoreBørn));
-
-
-
             }
-            
-           
-            
         } 
             
 
         public void VisResultat()
         {
-            
-
             foreach (var liste in Prisdict2)
             { 
                 Prislist.Add($"Hus Nr {liste.Key} skal betale {liste.Value}");
             }
-
-           
         }
-
 
 
         private void BeregnNuMetode()
@@ -629,8 +618,8 @@ namespace App11.Model
                 foreach (Deltagere deltager in Mandagsliste)
                 {
                     deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-                   deltager.antalUnge * deltager.gangeForUnge +
-                   deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
                     if (!Prisdict.ContainsKey(deltager.husNr))
 
@@ -642,17 +631,50 @@ namespace App11.Model
                     {
 
                         Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
-                    } }
-
+                    }
+                }
             }
 
-            foreach (Deltagere deltager in Tirsdagsliste)
+                foreach (Deltagere deltager in Tirsdagsliste)
+                {
+                    deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
+                    if (!Prisdict.ContainsKey(deltager.husNr))
+                    {
+                    Prisdict.Add(deltager.husNr, deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette);
+                    }
+
+                    else
+                    {
+                        Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
+                    }
+                }
+
+
+                foreach (Deltagere deltager in Onsdagsliste)
+                {
+                    deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
+                    deltager.antalUnge * deltager.gangeForUnge +
+                    deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+
+                    if (!Prisdict.ContainsKey(deltager.husNr))
+                    {
+                        Prisdict.Add(deltager.husNr, deltager.GangMedDette = deltager.GangMedDette + deltager.gangeForSmåBørn);
+                    }
+
+                    else
+                    {
+                    Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
+                    }
+                }
+
+            foreach (Deltagere deltager in Torsdagsliste)
             {
-
                 deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
+                deltager.antalUnge * deltager.gangeForUnge +
+                deltager.antalStoreBørn * deltager.gangeForStoreBørn));
 
                 if (!Prisdict.ContainsKey(deltager.husNr))
                 {
@@ -663,56 +685,13 @@ namespace App11.Model
                 {
                     Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
                 }
-            }
-
-
-            foreach (Deltagere deltager in Onsdagsliste)
-
-            {
-
-
-                deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
-
-                if (!Prisdict.ContainsKey(deltager.husNr))
-                {
-                    Prisdict.Add(deltager.husNr, deltager.GangMedDette = deltager.GangMedDette + deltager.gangeForSmåBørn);
-                }
-
-                else
-                {
-
-                    Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
-                }
-            }
-
-                foreach (Deltagere deltager in Torsdagsliste)
-
-                {
-
-                deltager.GangMedDette = ((deltager.antalVoksne * deltager.gangeForVoksne +
-               deltager.antalUnge * deltager.gangeForUnge +
-               deltager.antalStoreBørn * deltager.gangeForStoreBørn));
-
-                if (!Prisdict.ContainsKey(deltager.husNr))
-                    {
-                        Prisdict.Add(deltager.husNr, deltager.GangMedDette = deltager.GangMedDette + deltager.GangMedDette);
-                    }
-
-                    else
-                {
-                    Prisdict[husNr] = deltager.GangMedDette + deltager.GangMedDette;
-                }
 
 
                 foreach (var pris in Prisdict)
                 {
                     deltager.PrisPrFamilie = pris.Value * (_prisIalt / KuverterOmUgen);
-
                     Prisdict2.Add(deltager.husNr, deltager.PrisPrFamilie);
                 }
-
 
             }
 
