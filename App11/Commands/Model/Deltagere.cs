@@ -21,6 +21,7 @@ namespace App11.Model
         public double PrisPrHus{ get; set; }
         public double PrisPrFamilie { get; set; }
         public double GangMedDette { get; set; }
+        public double DetteValue { get; set; }
         public string Dag { get; set; }
         public Deltagere()
 
@@ -29,6 +30,7 @@ namespace App11.Model
             this.gangeForStoreBørn = 0.25;
             this.gangeForUnge = 0.50;
             this.gangeForVoksne = 1;
+            this.DetteValue  = (antalStoreBørn * gangeForStoreBørn + antalVoksne * gangeForVoksne + antalUnge * gangeForUnge);
 
         }
 

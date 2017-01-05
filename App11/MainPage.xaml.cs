@@ -23,6 +23,7 @@ namespace App11
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
+
     {
         public MainPage()
         {
@@ -73,6 +74,26 @@ namespace App11
         }
 
         private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+          
+        }
+
+        private void textBox_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox_Copy1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox_Copy2_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
